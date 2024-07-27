@@ -3994,7 +3994,7 @@ dtrace-provider@~0.8:
   dependencies:
     nan "^2.14.0"
 
-eas-cli@^10.2.1:
+eas-cli@10.2.1:
   version "10.2.1"
   resolved "https://registry.yarnpkg.com/eas-cli/-/eas-cli-10.2.1.tgz#990be407c0e126d632fb320b2c2845fa57af2dcb"
   integrity sha512-ayiCnxv58RYFPgYtgDhzcTIsJuN4CWFIl0IR1zMLlau/tNQxR6AnXTyF+XNUYEIHMaLwc1TDsZ5DlZu9e/2sXg==
