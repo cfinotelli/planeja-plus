@@ -4,7 +4,7 @@ import * as SplashScreen from "expo-splash-screen";
 import { useEffect } from "react";
 import "react-native-reanimated";
 
-import { View } from "react-native";
+import { SafeAreaView, View } from "react-native";
 import { StatusBar } from "expo-status-bar";
 
 SplashScreen.preventAutoHideAsync();
@@ -25,11 +25,11 @@ export default function RootLayout() {
   }
 
   return (
-    <View className="flex-1 bg-slate-900">
+    <SafeAreaView className="flex-1 bg-slate-200">
       <StatusBar style="light" translucent hideTransitionAnimation="fade" />
       <View className="flex-1 items-center justify-center">
         <Slot />
       </View>
-    </View>
+    </SafeAreaView>
   );
 }
