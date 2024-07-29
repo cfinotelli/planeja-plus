@@ -25,9 +25,9 @@ export default function RootLayout() {
   }
 
   return (
-    <View style={{ flex: 1, backgroundColor: "#333" }}>
+    <View className="flex-1 bg-slate-900">
       <StatusBar style="light" translucent hideTransitionAnimation="fade" />
-      <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
+      <View className="flex-1 items-center justify-center">
         <Slot />
       </View>
     </View>
