@@ -46,14 +46,20 @@ export default function Page() {
         renderSectionHeader={({ section: { title, data } }) => (
           <>
             <View className="flex-row flex-1 items-center justify-between pb-2 border-b border-slate-400">
-              <Text className="font-bold text-lg capitalize">{title}</Text>
+              <Text className="font-bold text-lg capitalize">
+                {title && title}
+              </Text>
               <Text className="text-sm">
-                {data.length ?? 0} lista{data.length !== 1 && `s`}
+                {data.length || 0} lista{data.length !== 1 && `s`}
               </Text>
             </View>
 
-            {title === "Minhas listas" && data.length === 0 && <ListsEmpty />}
-            {title === "Meus lembretes" && data.length === 0 && <ListsEmpty />}
+            {title && title === "Minhas listas" && data.length === 0 && (
+              <ListsEmpty />
+            )}
+            {title && title === "Meus lembretes" && data.length === 0 && (
+              <ListsEmpty />
+            )}
           </>
         )}
         renderItem={({ item, section: { title } }) => (
