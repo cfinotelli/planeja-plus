@@ -1,5 +1,5 @@
 import React from "react";
-import { SectionList, Text, View } from "react-native";
+import { ScrollView, SectionList, Text, View } from "react-native";
 import HeadingTemplate from "./_components/heading-template";
 import { ListItemLink } from "./_components/list-item-link";
 import { ListsEmpty } from "./_components/lists-empty";
@@ -36,44 +36,60 @@ export default function Page() {
         }
         footerChildren={<NavigationTabs />}
       />
+      <View className="flex-1 w-full justify-between">
+        <View className="justify-start flex-1">
+          <View className="h-12 w-full bg-red-500 items-center justify-center">
+            <Text className="font-bold text-slate-50">banner</Text>
+          </View>
 
-      <SectionList
-        sections={sections}
-        keyExtractor={(item) => item.id}
-        className="flex-1 p-4"
-        contentContainerStyle={{ gap: 12, paddingBottom: 20 }}
-        showsVerticalScrollIndicator={false}
-        renderSectionHeader={({ section: { title, data } }) => (
-          <>
-            <View className="flex-row flex-1 items-center justify-between pb-2 border-b border-slate-400">
-              <Text className="font-bold text-lg capitalize">
-                {title && title}
-              </Text>
-              <Text className="text-sm">
-                {data.length || 0} lista{data.length !== 1 && `s`}
-              </Text>
-            </View>
+          <ScrollView>
+            {sections.map((section) => (
+              <View key={section.title} className="p-5">
+                <View className="flex-row flex-1 items-center justify-between pb-2 border-b border-slate-400">
+                  <Text className="font-bold text-lg capitalize">
+                    {section.title}
+                  </Text>
+                  <Text className="text-sm">
+                    {section.data.length || 0}{" "}
+                    {section.title === "Minhas listas" ? "lista" : "lembrete"}
+                    {section.data.length !== 1 && `s`}
+                  </Text>
+                </View>
 
-            {title && title === "Minhas listas" && data.length === 0 && (
-              <ListsEmpty />
-            )}
-            {title && title === "Meus lembretes" && data.length === 0 && (
-              <ListsEmpty />
-            )}
-          </>
-        )}
-        renderItem={({ item, section: { title } }) => (
-          <>
-            {title === "Minhas listas" && (
-              <ListItemLink id={item.id} itemTitle={item.title} />
-            )}
+                <View className="mt-2">
+                  {section.data.map((sectionArrayItem) => (
+                    <View key={sectionArrayItem.id} className="mb-2">
+                      {section.title === "Minhas listas" && (
+                        <ListItemLink
+                          id={sectionArrayItem.id}
+                          itemTitle={sectionArrayItem.title}
+                        />
+                      )}
 
-            {title === "Meus lembretes" && (
-              <ListItemLink id={item.id} itemTitle={item.title} />
-            )}
-          </>
-        )}
-      />
+                      {section.title === "Meus lembretes" && (
+                        <ListItemLink
+                          id={sectionArrayItem.id}
+                          itemTitle={sectionArrayItem.title}
+                        />
+                      )}
+                    </View>
+                  ))}
+                </View>
+
+                {section.title === "Minhas listas" &&
+                  section.data.length === 0 && <ListsEmpty />}
+
+                {section.title === "Meus lembretes" &&
+                  section.data.length === 0 && <ListsEmpty />}
+              </View>
+            ))}
+          </ScrollView>
+        </View>
+
+        <View className="h-12 w-full bg-red-500 items-center justify-center">
+          <Text className="font-bold text-slate-50">banner</Text>
+        </View>
+      </View>
     </View>
   );
 }
