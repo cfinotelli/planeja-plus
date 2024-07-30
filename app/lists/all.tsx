@@ -5,6 +5,7 @@ import { CreateListLink } from "../_components/create-list-link";
 import { Lists } from "../_components/lists";
 import HeadingTemplate from "../_components/heading-template";
 import { GoBackButton } from "../_components/go-back-button";
+import { BannerAds } from "../_components/banner-ads";
 
 export default function Page() {
   return (
