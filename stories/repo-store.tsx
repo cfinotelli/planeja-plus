@@ -46,6 +46,7 @@ export const useRepoStore = create(
       removeList: (listId: string) =>
         set((state) => ({
           lists: removeListHelper(state.lists, listId),
+          items: state.items.filter((item) => item.listId !== listId),
         })),
       updatedListsOnDrag: (currentLists: ListProps[]) =>
         set({
