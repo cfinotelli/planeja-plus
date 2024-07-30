@@ -18,7 +18,7 @@ export const ConfirmationModal = ({
       visible={visible}
       onRequestClose={onCancel}
     >
-      <View className="flex-1 justify-center items-center bg-black/70 bg-opacity-50">
+      <View className="flex-1 justify-center items-center bg-slate-900/80 bg-opacity-50">
         <View className="w-80 bg-white p-5 rounded-md shadow-lg">
           <Text className="text-lg mb-4">Deseja mesmo fazer isso?</Text>
           <View className="flex-row justify-end space-x-2">
