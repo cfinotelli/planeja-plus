@@ -64,8 +64,6 @@ export default function Page() {
     handleGoBack();
   };
 
-  console.log({ items: items, lists: lists });
-
   return (
     <View className="flex-1 w-full">
       <HeadingTemplate
