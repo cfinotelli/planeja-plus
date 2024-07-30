@@ -35,7 +35,7 @@ export default function Page() {
         {lists.length >= 1 ? (
           <>
             {lists.map((list) => (
-              <View className="mb-1.5">
+              <View key={list.id} className="mb-1.5">
                 <ListItemLink id={list.id} itemTitle={list.title} />
               </View>
             ))}
@@ -55,7 +55,7 @@ export default function Page() {
           {lists.length >= 1 ? (
             <>
               {lists.map((list) => (
-                <View className="mb-1.5">
+                <View key={list.id} className="mb-1.5">
                   <ListItemLink id={list.id} itemTitle={list.title} />
                 </View>
               ))}
