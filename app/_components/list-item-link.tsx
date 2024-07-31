@@ -38,7 +38,11 @@ export const ListItemLink = ({
         >
           <View className="flex-row items-center">
             {drag && (
-              <TouchableOpacity onLongPress={drag} activeOpacity={0.7}>
+              <TouchableOpacity
+                onLongPress={drag}
+                activeOpacity={0.7}
+                className="mr-1"
+              >
                 <MaterialIcons
                   name="drag-indicator"
                   size={16}
@@ -48,7 +52,7 @@ export const ListItemLink = ({
             )}
             <Text className="font-semibold">{itemTitle}</Text>
           </View>
-          <AntDesign name="right" size={24} color={colors.cyan[500]} />
+          <AntDesign name="right" size={24} color={colors.cyan[600]} />
         </TouchableOpacity>
       </Link>
     </Animated.View>

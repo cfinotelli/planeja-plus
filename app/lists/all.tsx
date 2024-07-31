@@ -16,7 +16,7 @@ export default function Page() {
             <GoBackButton />
 
             <View className="flex-row justify-center items-center space-x-2 p-1 rounded-md active:bg-slate-400">
-              <Entypo name="list" size={24} color={colors.cyan[500]} />
+              <Entypo name="list" size={24} color={colors.cyan[600]} />
               <Text className="font-bold text-sm capitalize text-slate-100">
                 Listas
               </Text>
