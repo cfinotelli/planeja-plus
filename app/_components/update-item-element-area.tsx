@@ -35,7 +35,7 @@ export const UpdateItemElementArea = ({
   return (
     <View className="flex-row justify-between items-center flex-1">
       <TouchableOpacity className="mr-1" onPress={() => setModalVisible(true)}>
-        <EvilIcons name="trash" size={18} color={colors.red[400]} />
+        <EvilIcons name="trash" size={22} color={colors.red[400]} />
       </TouchableOpacity>
 
       <TextInput

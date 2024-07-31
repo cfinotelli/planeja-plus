@@ -51,14 +51,16 @@ export const Item = ({ item, drag }: ItemElementProps) => {
         </TouchableOpacity>
       )}
 
-      <View className="border-l border-slate-400 pl-2">
-        <Checkbox
-          value={isChecked}
-          onValueChange={setIsChecked}
-          className="w-4 h-4"
-          color={colors.cyan[600]}
-        />
-      </View>
+      {!updating && (
+        <View className="border-l border-slate-400 pl-2">
+          <Checkbox
+            value={isChecked}
+            onValueChange={setIsChecked}
+            className="w-4 h-4"
+            color={colors.cyan[600]}
+          />
+        </View>
+      )}
 
       <View className="flex-1 flex-row justify-between items-center">
         {updating ? (
