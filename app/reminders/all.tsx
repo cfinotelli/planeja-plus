@@ -1,10 +1,10 @@
-import Entypo from "@expo/vector-icons/Entypo";
 import { Text, View } from "react-native";
 import colors from "tailwindcss/colors";
-import { CreateListLink } from "../_components/create-list-link";
-import { Lists } from "../_components/lists";
 import HeadingTemplate from "../_components/heading-template";
 import { GoBackButton } from "../_components/go-back-button";
+import { SimpleLineIcons } from "@expo/vector-icons";
+import { Reminders } from "../_components/reminders";
+import { CreateReminderLink } from "../_components/create-reminder-link";
 
 export default function Page() {
   return (
@@ -15,17 +15,18 @@ export default function Page() {
             <GoBackButton />
 
             <View className="flex-row justify-center items-center space-x-2 p-1 rounded-md active:bg-slate-400">
-              <Entypo name="list" size={24} color={colors.cyan[600]} />
+              <SimpleLineIcons name="bell" size={24} color={colors.cyan[600]} />
+
               <Text className="font-bold text-sm capitalize text-slate-100">
-                Listas
+                Lembretes
               </Text>
             </View>
           </View>
         }
-        footerChildren={<CreateListLink />}
+        footerChildren={<CreateReminderLink />}
       />
 
-      <Lists />
+      <Reminders />
     </View>
   );
 }

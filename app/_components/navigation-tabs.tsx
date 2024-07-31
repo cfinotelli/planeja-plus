@@ -21,13 +21,20 @@ export const NavigationTabs = () => {
         </TouchableOpacity>
       </Link>
 
-      <TouchableOpacity className="flex-row justify-center items-center space-x-2 p-1 rounded-md flex-1 bg-slate-700">
-        <SimpleLineIcons name="bell" size={24} color={colors.cyan[600]} />
+      <Link
+        href={{
+          pathname: "reminders/all",
+        }}
+        asChild
+      >
+        <TouchableOpacity className="flex-row justify-center items-center space-x-2 p-1 rounded-md flex-1 bg-slate-700">
+          <SimpleLineIcons name="bell" size={24} color={colors.cyan[600]} />
 
-        <Text className="font-bold text-sm capitalize text-slate-100">
-          Lembretes
-        </Text>
-      </TouchableOpacity>
+          <Text className="font-bold text-sm capitalize text-slate-100">
+            Lembretes
+          </Text>
+        </TouchableOpacity>
+      </Link>
     </View>
   );
 };
