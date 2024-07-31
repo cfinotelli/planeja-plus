@@ -2,14 +2,29 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { create } from "zustand";
 import { createJSONStorage, persist } from "zustand/middleware";
 import {
-  createItemHelper,
-  updateItemHelper,
-  removeItemHelper,
   createListHelper,
   updateListHelper,
   removeListHelper,
-} from "./helpers/repo-store.helpers";
-import { StateProps, ItemProps, ListProps } from "./repo-store.types";
+  updatedListsOnDragHelper,
+} from "./helpers/lists-repo.helpers";
+import {
+  StateProps,
+  ItemProps,
+  ListProps,
+  ReminderProps,
+} from "./repo-store.types";
+import {
+  createItemHelper,
+  updateItemHelper,
+  removeItemHelper,
+  updatedItemsOnDragHelper,
+} from "./helpers/items-repo.helpers";
+import {
+  createReminderHelper,
+  removeReminderHelper,
+  updatedRemindersOnDragHelper,
+  updateReminderHelper,
+} from "./helpers/reminders-repo.helpers";
 
 export const useRepoStore = create(
   persist<StateProps>(
@@ -29,9 +44,9 @@ export const useRepoStore = create(
           items: removeItemHelper(state.items, itemId),
         })),
       updatedItemsOnDrag: (currentItems: ItemProps[]) =>
-        set({
-          items: currentItems,
-        }),
+        set((state) => ({
+          items: updatedItemsOnDragHelper(state.items, currentItems),
+        })),
 
       lists: [],
       createList: (list: ListProps) =>
@@ -49,9 +64,31 @@ export const useRepoStore = create(
           items: state.items.filter((item) => item.listId !== listId),
         })),
       updatedListsOnDrag: (currentLists: ListProps[]) =>
-        set({
-          lists: currentLists,
-        }),
+        set((state) => ({
+          lists: updatedListsOnDragHelper(state.lists, currentLists),
+        })),
+
+      reminders: [],
+      createReminder: (reminder: ReminderProps) =>
+        set((state) => ({
+          reminders: createReminderHelper(state.reminders, reminder),
+        })),
+      updateReminder: (reminder: ReminderProps) => {
+        set((state) => ({
+          reminders: updateReminderHelper(state.reminders, reminder),
+        }));
+      },
+      removeReminder: (reminderId: string) =>
+        set((state) => ({
+          reminders: removeReminderHelper(state.reminders, reminderId),
+        })),
+      updatedRemindersOnDrag: (currentReminders: ReminderProps[]) =>
+        set((state) => ({
+          reminders: updatedRemindersOnDragHelper(
+            state.reminders,
+            currentReminders
+          ),
+        })),
     }),
     {
       name: "@planeja-plus",

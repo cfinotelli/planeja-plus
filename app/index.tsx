@@ -1,17 +1,16 @@
 import React from "react";
-import { ScrollView, SectionList, Text, View } from "react-native";
+import { ScrollView, Text, View } from "react-native";
 import HeadingTemplate from "./_components/heading-template";
 import { ListItemLink } from "./_components/list-item-link";
 import { ListsEmpty } from "./_components/lists-empty";
 import { Logo } from "./_components/logo";
 import { useRepoStore } from "@/stories/repo-store";
-import { ListProps } from "@/stories/repo-store.types";
 import { NavigationTabs } from "./_components/navigation-tabs";
 import { HomeLabelList } from "./_components/home-label-list";
-import { BannerAds } from "./_components/banner-ads";
+import { ReminderItem } from "./_components/reminder-item";
 
 export default function Page() {
-  const { lists } = useRepoStore((state) => state);
+  const { lists, reminders } = useRepoStore((state) => state);
 
   return (
     <View className="flex-1 w-full">
@@ -47,21 +46,21 @@ export default function Page() {
         <HomeLabelList
           title="Meus lembretes"
           sectionType="lembrete"
-          quantity={lists.length}
-          isOdd={lists.length !== 1}
+          quantity={reminders.length}
+          isOdd={reminders.length !== 1}
         />
 
         <View className="pb-12">
-          {lists.length >= 1 ? (
+          {reminders.length >= 1 ? (
             <>
-              {lists.map((list) => (
-                <View key={list.id} className="mb-1.5">
-                  <ListItemLink id={list.id} itemTitle={list.title} />
+              {reminders.map((reminder) => (
+                <View key={reminder.id} className="mb-1.5">
+                  <ReminderItem reminder={reminder} />
                 </View>
               ))}
             </>
           ) : (
-            <ListsEmpty />
+            <Text>Nenhum lembrete</Text>
           )}
         </View>
       </ScrollView>
