@@ -30,6 +30,7 @@ export default function Page() {
         createdAt: new Date(),
         listId,
         name: newItem.name,
+        isChecked: false,
       });
 
       return handleGoBack();
