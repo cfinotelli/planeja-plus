@@ -14,7 +14,7 @@ export const NavigationTabs = () => {
         asChild
       >
         <TouchableOpacity className="flex-row justify-center items-center space-x-2 p-1 rounded-md flex-1 bg-slate-700">
-          <Entypo name="list" size={24} color={colors.cyan[500]} />
+          <Entypo name="list" size={24} color={colors.cyan[600]} />
           <Text className="font-bold text-sm capitalize text-slate-100">
             Listas
           </Text>
@@ -22,7 +22,7 @@ export const NavigationTabs = () => {
       </Link>
 
       <TouchableOpacity className="flex-row justify-center items-center space-x-2 p-1 rounded-md flex-1 bg-slate-700">
-        <SimpleLineIcons name="bell" size={24} color={colors.cyan[500]} />
+        <SimpleLineIcons name="bell" size={24} color={colors.cyan[600]} />
 
         <Text className="font-bold text-sm capitalize text-slate-100">
           Lembretes

@@ -5,6 +5,7 @@ import FontAwesome5 from "@expo/vector-icons/FontAwesome5";
 import React, { useState } from "react";
 import { TextInput, TouchableOpacity, View } from "react-native";
 import colors from "tailwindcss/colors";
+import { ConfirmationModal } from "./confirmation-modal";
 
 export const UpdateItemElementArea = ({
   item,
@@ -15,6 +16,7 @@ export const UpdateItemElementArea = ({
 }) => {
   const { updateItem, removeItem } = useRepoStore((state) => state);
   const [itemUpdated, setItemUpdated] = useState<ItemProps>(item);
+  const [isModalVisible, setModalVisible] = useState(false);
 
   const handleConfirmUpdate = () => {
     updateItem({
@@ -24,10 +26,16 @@ export const UpdateItemElementArea = ({
     setUpdating(false);
   };
 
+  const handleDeleteItem = () => {
+    removeItem(item.id);
+    setUpdating(false);
+    setModalVisible(false);
+  };
+
   return (
     <View className="flex-row justify-between items-center flex-1">
-      <TouchableOpacity className="mr-1" onPress={() => removeItem(item.id)}>
-        <EvilIcons name="trash" size={18} color={colors.red[400]} />
+      <TouchableOpacity className="mr-1" onPress={() => setModalVisible(true)}>
+        <EvilIcons name="trash" size={22} color={colors.red[400]} />
       </TouchableOpacity>
 
       <TextInput
@@ -49,6 +57,12 @@ export const UpdateItemElementArea = ({
       <TouchableOpacity className="ml-5 mr-1" onPress={handleConfirmUpdate}>
         <FontAwesome5 name="check" size={14} color={colors.green[400]} />
       </TouchableOpacity>
+
+      <ConfirmationModal
+        visible={isModalVisible}
+        onCancel={() => setModalVisible(false)}
+        onAccept={handleDeleteItem}
+      />
     </View>
   );
 };

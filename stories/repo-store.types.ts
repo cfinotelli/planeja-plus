@@ -9,6 +9,7 @@ export interface ItemProps {
   name: string;
   listId: string;
   createdAt: Date;
+  isChecked: boolean;
 }
 
 export interface StateProps {

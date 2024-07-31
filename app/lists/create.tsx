@@ -64,7 +64,7 @@ export default function Page() {
         <TouchableOpacity
           onPress={handleCreateNewList}
           activeOpacity={0.7}
-          className="bg-blue-600  w-full p-2 rounded-md border border-solid border-slate-500"
+          className="w-full p-1.5 rounded-md  bg-slate-700"
         >
           <Text className="text-center text-slate-100 font-semibold text-sm">
             Criar lista
