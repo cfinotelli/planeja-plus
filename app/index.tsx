@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { ScrollView, Text, View } from "react-native";
 import HeadingTemplate from "./_components/heading-template";
 import { ListItemLink } from "./_components/list-item-link";
@@ -8,9 +8,15 @@ import { useRepoStore } from "@/stories/repo-store";
 import { NavigationTabs } from "./_components/navigation-tabs";
 import { HomeLabelList } from "./_components/home-label-list";
 import { ReminderItem } from "./_components/reminder-item";
+import { ReminderProps } from "@/stories/repo-store.types";
+import { isToday } from "date-fns";
 
 export default function Page() {
   const { lists, reminders } = useRepoStore((state) => state);
+
+  const todayReminders: ReminderProps[] = reminders.filter((reminder) =>
+    isToday(reminder.reminderAt)
+  );
 
   return (
     <View className="flex-1 w-full">
@@ -44,16 +50,16 @@ export default function Page() {
         )}
 
         <HomeLabelList
-          title="Meus lembretes"
+          title="Meus lembretes de hoje"
           sectionType="lembrete"
-          quantity={reminders.length}
-          isOdd={reminders.length !== 1}
+          quantity={todayReminders.length}
+          isOdd={todayReminders.length !== 1}
         />
 
         <View className="pb-12">
-          {reminders.length >= 1 ? (
+          {todayReminders.length >= 1 ? (
             <>
-              {reminders.map((reminder) => (
+              {todayReminders.map((reminder) => (
                 <View key={reminder.id} className="mb-1.5">
                   <ReminderItem reminder={reminder} />
                 </View>
