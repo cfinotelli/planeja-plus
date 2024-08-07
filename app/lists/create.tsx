@@ -23,7 +23,7 @@ export default function Page() {
       createList({
         id: Crypto.randomUUID(),
         title: newList,
-        createdAt: new Date(),
+        createdAt: new Date().toISOString(),
       });
 
       return handleGoBack();
@@ -43,7 +43,7 @@ export default function Page() {
           </>
         }
         footerChildren={
-          <LinkButton pathname="lists/all" title="Ver minhas listas" />
+          <LinkButton pathname="/lists/all" title="Ver minhas listas" />
         }
       />
 
@@ -64,7 +64,7 @@ export default function Page() {
         <TouchableOpacity
           onPress={handleCreateNewList}
           activeOpacity={0.7}
-          className="w-full p-1.5 rounded-md  bg-slate-700"
+          className="w-full p-2 rounded-md  bg-slate-700"
         >
           <Text className="text-center text-slate-100 font-semibold text-sm">
             Criar lista

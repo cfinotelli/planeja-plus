@@ -1,23 +1,19 @@
 import { useRepoStore } from "@/stories/repo-store";
 import { ReminderProps } from "@/stories/repo-store.types";
-import { MaterialIcons, SimpleLineIcons } from "@expo/vector-icons";
+import { Feather, FontAwesome, MaterialIcons } from "@expo/vector-icons";
 import { formatRelative } from "date-fns";
 import { ptBR } from "date-fns/locale";
-import { Animated, Text, TouchableOpacity, View, Switch } from "react-native";
+import { Animated, Text, TouchableOpacity, View } from "react-native";
 import colors from "tailwindcss/colors";
 import { ConfirmationModal } from "./confirmation-modal";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { ReminderNotification } from "@/actions/notification.action";
+import { ClockIcon } from "@/assets/icons";
 
 interface ReminderItemProps {
   reminder: ReminderProps;
   drag?: () => void;
   isActive?: boolean;
-}
-
-interface ReminderStateProps {
-  notificationOn: boolean;
-  alertOn: boolean;
-  reminderAt: Date;
 }
 
 export const ReminderItem = ({ drag, reminder }: ReminderItemProps) => {
@@ -50,6 +46,17 @@ export const ReminderItem = ({ drag, reminder }: ReminderItemProps) => {
     setModalVisible(false);
   };
 
+  const handleNotiification = async () => {
+    await ReminderNotification({
+      label: reminder.label,
+      reminderAt: new Date(reminder.reminderAt),
+    });
+  };
+
+  useEffect(() => {
+    handleNotiification();
+  }, []);
+
   return (
     <Animated.View className="flex-row flex-1 items-center border border-slate-500 rounded-md p-2">
       {drag && (
@@ -66,21 +73,24 @@ export const ReminderItem = ({ drag, reminder }: ReminderItemProps) => {
         </TouchableOpacity>
       )}
 
-      <View className="flex-1">
-        <View className="flex-row flex-1 items-center justify-between">
-          <Text className="text-base">{reminder.label}</Text>
-          <View className="flex-row items-center">
-            <Text className="font-bold text-base mr-1">
+      <View className="flex-1 flex-row items-center justify-between">
+        <View className="flex-col flex-1 items-center justify-start">
+          {reminder.label && (
+            <Text className="font-bold text-base text-left w-full">
+              {reminder.label}
+            </Text>
+          )}
+          <View className="flex-row items-center text-left w-full">
+            <Text className="text-sm mr-1">
               {formatRelative(reminder.reminderAt, new Date(), {
                 locale: ptBR,
               })}
             </Text>
-            <SimpleLineIcons name="bell" size={14} color={colors.cyan[600]} />
+            <ClockIcon size={14} />
           </View>
         </View>
 
-        <View className="flex-row flex-1 items-center justify-between">
-          <View className="flex-row flex-1 items-center justify-start gap-4">
+        {/* <View className="flex-row flex-1 items-center justify-start gap-4">
             <View className="items-center justify-center">
               <Switch
                 value={reminder.alertOn}
@@ -103,8 +113,15 @@ export const ReminderItem = ({ drag, reminder }: ReminderItemProps) => {
               />
               <Text className="text-xs font-medium italic">Notificação</Text>
             </View>
-          </View>
-        </View>
+          </View> */}
+
+        <TouchableOpacity>
+          <FontAwesome
+            name="pencil-square-o"
+            size={20}
+            color={colors.cyan[600]}
+          />
+        </TouchableOpacity>
       </View>
 
       <ConfirmationModal

@@ -27,7 +27,7 @@ export default function Page() {
     if (newItem.name) {
       createItem({
         id: Crypto.randomUUID(),
-        createdAt: new Date(),
+        createdAt: new Date().toISOString(),
         listId,
         name: newItem.name,
         isChecked: false,
@@ -55,7 +55,7 @@ export default function Page() {
         }
         footerChildren={
           <LinkButton
-            pathname="lists/list"
+            pathname="/lists/list"
             id={listId}
             title={`Ver lista: ${currentList?.title}`}
           />
@@ -86,7 +86,7 @@ export default function Page() {
         <TouchableOpacity
           onPress={handleCreateItem}
           activeOpacity={0.7}
-          className="w-full p-1.5 rounded-md  bg-slate-700"
+          className="w-full p-2 rounded-md  bg-slate-700"
         >
           <Text className="text-center text-slate-100 font-semibold text-sm">
             Criar item

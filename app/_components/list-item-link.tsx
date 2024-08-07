@@ -4,7 +4,7 @@ import { Link } from "expo-router";
 import { Text, TouchableOpacity, View } from "react-native";
 import Animated from "react-native-reanimated";
 import colors from "tailwindcss/colors";
-interface ListItemLink {
+interface ListItemLinkProps {
   id: string;
   itemTitle: string;
   pathname?: string;
@@ -15,16 +15,16 @@ interface ListItemLink {
 export const ListItemLink = ({
   id,
   itemTitle,
-  pathname = "lists/list",
+  pathname,
   drag,
   isActive,
-}: ListItemLink) => {
+}: ListItemLinkProps) => {
   return (
     <Animated.View>
       <Link
         disabled={isActive}
         href={{
-          pathname,
+          pathname: "/lists/list",
           params: {
             id,
           },

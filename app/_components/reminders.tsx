@@ -6,6 +6,7 @@ import DraggableFlatList, {
   DragEndParams,
 } from "react-native-draggable-flatlist";
 import { ReminderItem } from "./reminder-item";
+import { RemindersEmpry } from "./reminders-empty";
 
 export const Reminders = () => {
   const ref = useRef(null);
@@ -30,7 +31,9 @@ export const Reminders = () => {
         renderItem={({ item, drag, isActive }) => (
           <ReminderItem reminder={item} drag={drag} isActive={isActive} />
         )}
-        ListEmptyComponent={() => <Text>Lembretes vazio</Text>}
+        ListEmptyComponent={() => (
+          <RemindersEmpry localHandler="remindersList" />
+        )}
       />
     </>
   );

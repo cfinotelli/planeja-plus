@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { ScrollView, Text, View } from "react-native";
 import HeadingTemplate from "./_components/heading-template";
 import { ListItemLink } from "./_components/list-item-link";
-import { ListsEmpty } from "./_components/lists-empty";
 import { Logo } from "./_components/logo";
 import { useRepoStore } from "@/stories/repo-store";
 import { NavigationTabs } from "./_components/navigation-tabs";
@@ -10,6 +9,17 @@ import { HomeLabelList } from "./_components/home-label-list";
 import { ReminderItem } from "./_components/reminder-item";
 import { ReminderProps } from "@/stories/repo-store.types";
 import { isToday } from "date-fns";
+import { Notifications } from "@/lib/notifications";
+import { RemindersEmpry } from "./_components/reminders-empty";
+import { ListsEmpty } from "./_components/lists-empty";
+
+Notifications.setNotificationHandler({
+  handleNotification: async () => ({
+    shouldShowAlert: true,
+    shouldPlaySound: true,
+    shouldSetBadge: true,
+  }),
+});
 
 export default function Page() {
   const { lists, reminders } = useRepoStore((state) => state);
@@ -66,7 +76,7 @@ export default function Page() {
               ))}
             </>
           ) : (
-            <Text>Nenhum lembrete</Text>
+            <RemindersEmpry localHandler="home" />
           )}
         </View>
       </ScrollView>

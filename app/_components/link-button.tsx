@@ -2,7 +2,7 @@ import { Link } from "expo-router";
 import { ReactNode } from "react";
 import { Text, TouchableOpacity } from "react-native";
 
-interface LinkButton {
+interface LinkButtonProps {
   pathname: string;
   title: string;
   listId?: string;
@@ -18,7 +18,7 @@ export const LinkButton = ({
   id,
   itemId,
   listId,
-}: LinkButton) => {
+}: LinkButtonProps) => {
   return (
     <Link
       href={{
@@ -33,7 +33,7 @@ export const LinkButton = ({
     >
       <TouchableOpacity
         activeOpacity={0.7}
-        className="w-full p-1.5 rounded-md items-center bg-slate-700 flex-row justify-center space-x-2"
+        className="w-full p-2 rounded-md items-center bg-slate-700 flex-row justify-center space-x-2"
       >
         {icon && icon}
         <Text className="text-slate-200 font-medium">{title}</Text>

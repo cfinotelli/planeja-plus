@@ -5,8 +5,8 @@ import { Text } from "react-native";
 import DraggableFlatList, {
   DragEndParams,
 } from "react-native-draggable-flatlist";
-import { ListsEmpty } from "./lists-empty";
 import { ListItemLink } from "./list-item-link";
+import { ListsEmpty } from "./lists-empty";
 
 export const Lists = () => {
   const ref = useRef(null);

@@ -1,21 +1,21 @@
 export interface ListProps {
   id: string;
   title: string;
-  createdAt: Date;
+  createdAt: string;
 }
 
 export interface ItemProps {
   id: string;
   name: string;
   listId: string;
-  createdAt: Date;
+  createdAt: string;
   isChecked: boolean;
 }
 
 export interface ReminderProps {
   id: string;
   label: string;
-  reminderAt: Date;
+  reminderAt: string;
   notificationOn: boolean;
   alertOn: boolean;
 }

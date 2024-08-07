@@ -9,7 +9,7 @@ interface CreateItemLinkProps {
 export const CreateItemLink = ({ listId }: CreateItemLinkProps) => {
   return (
     <LinkButton
-      pathname="itens/create"
+      pathname="/itens/create"
       title="Adicionar novo item"
       listId={listId}
       icon={<AntDesign name="plus" size={14} color={colors.slate[200]} />}
