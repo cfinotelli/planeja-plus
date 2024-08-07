@@ -9,6 +9,7 @@ import { ConfirmationModal } from "./confirmation-modal";
 import { useEffect, useState } from "react";
 import { ReminderNotification } from "@/actions/notification.action";
 import { ClockIcon } from "@/assets/icons";
+import { UpdateReminderItem } from "./update-reminder-item";
 
 interface ReminderItemProps {
   reminder: ReminderProps;
@@ -17,34 +18,8 @@ interface ReminderItemProps {
 }
 
 export const ReminderItem = ({ drag, reminder }: ReminderItemProps) => {
-  const { updateReminder, removeReminder } = useRepoStore((state) => state);
-  const [isModalVisible, setModalVisible] = useState(false);
-
-  const handleToggleNotification = () => {
-    updateReminder({
-      ...reminder,
-      notificationOn: !reminder.notificationOn,
-    });
-  };
-
-  const handleToggleAlert = () => {
-    updateReminder({
-      ...reminder,
-      alertOn: !reminder.alertOn,
-    });
-  };
-
-  const handleUpdateReminderAt = () => {
-    updateReminder({
-      ...reminder,
-      // reminderAt: currentReminder.reminderAt,
-    });
-  };
-
-  const handleDeleteReminder = () => {
-    removeReminder(reminder.id);
-    setModalVisible(false);
-  };
+  const [modalUpdateReminderVisible, setModalUpdateReminderVisible] =
+    useState(false);
 
   const handleNotiification = async () => {
     await ReminderNotification({
@@ -115,7 +90,7 @@ export const ReminderItem = ({ drag, reminder }: ReminderItemProps) => {
             </View>
           </View> */}
 
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() => setModalUpdateReminderVisible(true)}>
           <FontAwesome
             name="pencil-square-o"
             size={20}
@@ -124,10 +99,10 @@ export const ReminderItem = ({ drag, reminder }: ReminderItemProps) => {
         </TouchableOpacity>
       </View>
 
-      <ConfirmationModal
-        visible={isModalVisible}
-        onCancel={() => setModalVisible(false)}
-        onAccept={handleDeleteReminder}
+      <UpdateReminderItem
+        visible={modalUpdateReminderVisible}
+        onClose={() => setModalUpdateReminderVisible(false)}
+        reminder={reminder}
       />
     </Animated.View>
   );
