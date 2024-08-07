@@ -81,12 +81,12 @@ export const ReminderItem = ({ drag, reminder }: ReminderItemProps) => {
             </Text>
           )}
           <View className="flex-row items-center text-left w-full">
-            <Text className="text-sm mr-1">
+            <ClockIcon size={14} />
+            <Text className="text-sm ml-1">
               {formatRelative(reminder.reminderAt, new Date(), {
                 locale: ptBR,
               })}
             </Text>
-            <ClockIcon size={14} />
           </View>
         </View>
 

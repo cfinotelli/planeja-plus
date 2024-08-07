@@ -8,3 +8,7 @@ export const ClockIcon = ({ size }: { size: number }) => (
 export const ListIcon = ({ size }: { size: number }) => (
   <Entypo name="list" size={size} color={colors.cyan[600]} />
 );
+
+export const CalendarIcon = ({ size }: { size: number }) => (
+  <Feather name="calendar" size={size} color={colors.cyan[600]} />
+);

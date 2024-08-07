@@ -6,6 +6,7 @@ import HeadingTemplate from "../_components/heading-template";
 import { LinkButton } from "../_components/link-button";
 import { useRepoStore } from "@/stories/repo-store";
 import { Crypto } from "@/lib/crypto";
+import { FooterButton } from "../_components/footer-button";
 
 export default function Page() {
   const navigation = useNavigation();
@@ -61,15 +62,11 @@ export default function Page() {
           />
         </View>
 
-        <TouchableOpacity
+        <FooterButton
+          available={!!newList}
+          title="Criar lista"
           onPress={handleCreateNewList}
-          activeOpacity={0.7}
-          className="w-full p-2 rounded-md  bg-slate-700"
-        >
-          <Text className="text-center text-slate-100 font-semibold text-sm">
-            Criar lista
-          </Text>
-        </TouchableOpacity>
+        />
       </View>
     </View>
   );

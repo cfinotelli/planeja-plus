@@ -18,6 +18,7 @@ import { cn } from "@/lib/cn";
 import { Item } from "../_components/item";
 import { CreateItemLink } from "../_components/create-item-link";
 import { ListsEmpty } from "../_components/lists-empty";
+import { FooterButton } from "../_components/footer-button";
 
 export default function Page() {
   const ref = useRef(null);
@@ -63,6 +64,9 @@ export default function Page() {
     setUpdating(false);
     handleGoBack();
   };
+
+  let enableSaveButton: boolean =
+    currentUpdatedList.title !== currentList.title;
 
   return (
     <View className="flex-1 w-full">
@@ -166,15 +170,11 @@ export default function Page() {
             />
           </View>
 
-          <TouchableOpacity
+          <FooterButton
+            available={enableSaveButton}
+            title="Confirmar alteração"
             onPress={handleConfirmUpdate}
-            activeOpacity={0.7}
-            className="w-full p-2 rounded-md bg-slate-700"
-          >
-            <Text className="text-center text-slate-100 font-semibold text-sm">
-              Confirmar alteração
-            </Text>
-          </TouchableOpacity>
+          />
         </View>
       )}
 

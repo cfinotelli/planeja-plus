@@ -19,7 +19,8 @@ import DateTimePicker, {
 import { format } from "date-fns";
 import { Feather } from "@expo/vector-icons";
 import colors from "tailwindcss/colors";
-import { ClockIcon } from "@/assets/icons";
+import { CalendarIcon, ClockIcon } from "@/assets/icons";
+import { FooterButton } from "../_components/footer-button";
 
 interface ReminderItemProps {
   label: string;
@@ -96,9 +97,13 @@ export default function Page() {
     return handleGoBack();
   }
 
-  const currentDateSelectedformated =
+  const currentDateSelected =
     reminderLabel.reminderAt &&
-    format(reminderLabel.reminderAt, "'Dia:' dd'/'MM 'ás' HH:mm ");
+    format(reminderLabel.reminderAt, "'Dia:' dd'/'MM");
+
+  const currentHourSelected =
+    reminderLabel.reminderAt &&
+    format(reminderLabel.reminderAt, "'Horário:' HH:mm");
 
   return (
     <View className="flex-1 w-full">
@@ -142,9 +147,9 @@ export default function Page() {
               onPress={() => handleShowMode("date")}
               className="flex-1 justify-center items-center border border-slate-400 rounded-md p-1"
             >
-              <View className="flex-row gap-1">
-                <Feather name="calendar" size={18} color={colors.cyan[600]} />
-                <Text className="font-bold text-slate-800">
+              <View className="flex-row items-center justify-center">
+                <CalendarIcon size={18} />
+                <Text className="font-bold text-slate-800 ml-1">
                   Selecionar data
                 </Text>
               </View>
@@ -155,19 +160,25 @@ export default function Page() {
               onPress={() => handleShowMode("time")}
               className="flex-1 justify-center items-center border border-slate-400 rounded-md p-1"
             >
-              <View className="flex-row gap-1">
+              <View className="flex-row items-center justify-center">
                 <ClockIcon size={18} />
 
-                <Text className="font-bold text-slate-800">
+                <Text className="font-bold text-slate-800 ml-1">
                   Selecionar horário
                 </Text>
               </View>
             </TouchableOpacity>
           </View>
 
-          {currentDateSelectedformated && (
+          {currentDateSelected && (
             <Text className="border border-slate-400 p-2 rounded-md bg-slate-300">
-              {currentDateSelectedformated}
+              {currentDateSelected}
+            </Text>
+          )}
+
+          {currentHourSelected && (
+            <Text className="border border-slate-400 p-2 rounded-md bg-slate-300">
+              {currentHourSelected}
             </Text>
           )}
 
@@ -183,15 +194,11 @@ export default function Page() {
           )}
         </View>
 
-        <TouchableOpacity
+        <FooterButton
+          available={!dontHaveReminder}
+          title="Criar lembrete"
           onPress={handleCreateReminder}
-          activeOpacity={0.7}
-          className="w-full p-2 rounded-md  bg-slate-700"
-        >
-          <Text className="text-center text-slate-100 font-semibold text-sm">
-            Criar lembrete
-          </Text>
-        </TouchableOpacity>
+        />
       </View>
     </View>
   );
