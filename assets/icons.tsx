@@ -12,3 +12,11 @@ export const ListIcon = ({ size }: { size: number }) => (
 export const CalendarIcon = ({ size }: { size: number }) => (
   <Feather name="calendar" size={size} color={colors.cyan[600]} />
 );
+
+export const CheckIcon = ({ size }: { size: number }) => (
+  <Entypo name="check" size={size} color={colors.slate[200]} />
+);
+
+export const BlockIcon = ({ size }: { size: number }) => (
+  <Entypo name="block" size={size} color={colors.slate[200]} />
+);
