@@ -17,7 +17,8 @@ import { ItemProps, ListProps } from "@/stories/repo-store.types";
 import { cn } from "@/lib/cn";
 import { Item } from "../_components/item";
 import { CreateItemLink } from "../_components/create-item-link";
-import { ListEmpty } from "../_components/list-empty";
+import { ListsEmpty } from "../_components/lists-empty";
+import { FooterButton } from "../_components/footer-button";
 
 export default function Page() {
   const ref = useRef(null);
@@ -64,6 +65,9 @@ export default function Page() {
     handleGoBack();
   };
 
+  let enableSaveButton: boolean =
+    currentUpdatedList.title !== currentList.title;
+
   return (
     <View className="flex-1 w-full">
       <HeadingTemplate
@@ -73,11 +77,10 @@ export default function Page() {
 
             <TouchableOpacity
               onPress={handleToogleUpdateList}
-              disabled={updating}
               activeOpacity={0.7}
               className={cn(
                 updating ? "bg-slate-900" : "bg-slate-700",
-                "py-1 px-4 rounded-md"
+                "py-2 px-4 rounded-md"
               )}
             >
               <Text className="text-xs font-bold text-slate-100 text-center  flex-row items-center">
@@ -122,9 +125,9 @@ export default function Page() {
               <TouchableOpacity
                 onPress={() => setModalVisible(true)}
                 activeOpacity={0.7}
-                className="w-full p-1 rounded-md bg-red-700 items-center border border-slate-200"
+                className="w-full p-2 rounded-md bg-red-400 items-center border border-slate-200"
               >
-                <Text className="text-slate-200 font-bold ">
+                <Text className="text-red-800 font-bold ">
                   Deseja deletar está lista?
                 </Text>
               </TouchableOpacity>
@@ -144,7 +147,7 @@ export default function Page() {
           renderItem={({ item, drag, isActive }) => (
             <Item item={item} drag={drag} isActive={isActive} />
           )}
-          ListEmptyComponent={() => <ListEmpty listId={currentList.id} />}
+          ListEmptyComponent={() => <ListsEmpty listId={currentList.id} />}
         />
       )}
 
@@ -167,15 +170,11 @@ export default function Page() {
             />
           </View>
 
-          <TouchableOpacity
+          <FooterButton
+            available={enableSaveButton}
+            title="Confirmar alteração"
             onPress={handleConfirmUpdate}
-            activeOpacity={0.7}
-            className="w-full p-1.5 rounded-md bg-slate-700"
-          >
-            <Text className="text-center text-slate-100 font-semibold text-sm">
-              Confirmar alteração
-            </Text>
-          </TouchableOpacity>
+          />
         </View>
       )}
 

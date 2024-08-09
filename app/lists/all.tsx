@@ -5,7 +5,7 @@ import { CreateListLink } from "../_components/create-list-link";
 import { Lists } from "../_components/lists";
 import HeadingTemplate from "../_components/heading-template";
 import { GoBackButton } from "../_components/go-back-button";
-import { BannerAds } from "../_components/banner-ads";
+import { ListIcon } from "@/assets/icons";
 
 export default function Page() {
   return (
@@ -16,7 +16,7 @@ export default function Page() {
             <GoBackButton />
 
             <View className="flex-row justify-center items-center space-x-2 p-1 rounded-md active:bg-slate-400">
-              <Entypo name="list" size={24} color={colors.cyan[600]} />
+              <ListIcon size={24} />
               <Text className="font-bold text-sm capitalize text-slate-100">
                 Listas
               </Text>
