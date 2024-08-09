@@ -8,20 +8,24 @@ export async function ReminderNotification({
   reminderAt: Date;
 }) {
   await Notifications.requestPermissionsAsync();
-  const { status } = await Notifications.getPermissionsAsync();
+  const { status: existingStatus } = await Notifications.getPermissionsAsync();
 
-  if (status !== "granted") {
-    alert("Sem permissao para o envio de notificações!");
-    return;
+  let finalStatus = existingStatus;
+  if (existingStatus !== "granted") {
+    const { status } = await Notifications.requestPermissionsAsync();
+    finalStatus = status;
   }
 
-  // let _token = (await Notifications.getExpoPushTokenAsync()).data;
+  if (finalStatus !== "granted") {
+    alert("Falha ao receber permissão para o envio de notificações!");
+    return;
+  }
 
   await Notifications.scheduleNotificationAsync({
     identifier: "Default Reminder",
 
     content: {
-      title: "Lembrete ✔",
+      title: "Planeja Plus - Lembrete ✔",
       body: label,
       vibrate: [0, 250, 250, 250],
     },

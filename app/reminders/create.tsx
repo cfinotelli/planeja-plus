@@ -1,13 +1,6 @@
 import { useNavigation } from "expo-router";
 import React, { useState } from "react";
-import {
-  Alert,
-  Button,
-  Text,
-  TextInput,
-  TouchableOpacity,
-  View,
-} from "react-native";
+import { Text, TextInput, View } from "react-native";
 import { GoBackButton } from "../_components/go-back-button";
 import HeadingTemplate from "../_components/heading-template";
 import { LinkButton } from "../_components/link-button";
@@ -88,8 +81,6 @@ export default function Page() {
       id: Crypto.randomUUID(),
       label: reminderLabel.label,
       reminderAt: reminderLabel.reminderAt,
-      alertOn: true,
-      notificationOn: true,
     });
 
     return handleGoBack();
@@ -136,7 +127,7 @@ export default function Page() {
               });
             }}
             value={reminderLabel?.label}
-            className="p-1 px-4 border border-slate-400 border-solid rounded-lg"
+            className="p-1 px-4 border border-slate-400 border-solid rounded-lg mb-3"
           />
 
           <DateSelectModeTabs handleShowMode={handleToggleMode} />

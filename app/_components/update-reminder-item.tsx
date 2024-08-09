@@ -63,20 +63,6 @@ export const UpdateReminderItem = ({
     });
   }
 
-  function handleToggleNotification() {
-    setCurrentReminder({
-      ...reminder,
-      notificationOn: !reminder.notificationOn,
-    });
-  }
-
-  function handleToggleAlert() {
-    setCurrentReminder({
-      ...reminder,
-      alertOn: !reminder.alertOn,
-    });
-  }
-
   function handleOnChangePicker(
     _event: DateTimePickerEvent,
     selectedDate?: Date
@@ -132,32 +118,7 @@ export const UpdateReminderItem = ({
           </Text>
 
           <View className="space-y-3">
-            <View className="items-center justify-between w-full flex-row">
-              <View className="flex-row items-center h-4 justify-center">
-                <Text className="text-xs font-medium">Alarme</Text>
-                <Switch
-                  value={currentReminder.alertOn}
-                  onValueChange={handleToggleAlert}
-                  trackColor={{
-                    true: colors.cyan[500],
-                  }}
-                  thumbColor={colors.cyan[600]}
-                />
-              </View>
-              <View className="flex-row items-center h-4 justify-center">
-                <Text className="text-xs font-medium">Notificação</Text>
-                <Switch
-                  value={currentReminder.notificationOn}
-                  onValueChange={handleToggleNotification}
-                  trackColor={{
-                    true: colors.cyan[500],
-                  }}
-                  thumbColor={colors.cyan[600]}
-                />
-              </View>
-            </View>
-
-            <Text>Dê um nome ao lembrete:</Text>
+            <Text>Nome do lembrete:</Text>
             <TextInput
               placeholder="Meu lembrete"
               onChange={(e) => {

@@ -30,7 +30,7 @@ export const ReminderItem = ({ drag, reminder }: ReminderItemProps) => {
 
   useEffect(() => {
     handleNotiification();
-  }, []);
+  }, [reminder.reminderAt]);
 
   return (
     <Animated.View className="flex-row flex-1 items-center border border-slate-500 rounded-md p-2">
@@ -64,31 +64,6 @@ export const ReminderItem = ({ drag, reminder }: ReminderItemProps) => {
             </Text>
           </View>
         </View>
-
-        {/* <View className="flex-row flex-1 items-center justify-start gap-4">
-            <View className="items-center justify-center">
-              <Switch
-                value={reminder.alertOn}
-                onValueChange={handleToggleAlert}
-                trackColor={{
-                  true: colors.cyan[500],
-                }}
-                thumbColor={colors.cyan[600]}
-              />
-              <Text className="text-xs font-medium italic">Alarme</Text>
-            </View>
-            <View className="items-center justify-center">
-              <Switch
-                value={reminder.notificationOn}
-                onValueChange={handleToggleNotification}
-                trackColor={{
-                  true: colors.cyan[500],
-                }}
-                thumbColor={colors.cyan[600]}
-              />
-              <Text className="text-xs font-medium italic">Notificação</Text>
-            </View>
-          </View> */}
 
         <TouchableOpacity onPress={() => setModalUpdateReminderVisible(true)}>
           <FontAwesome

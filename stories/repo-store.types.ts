@@ -16,8 +16,6 @@ export interface ReminderProps {
   id: string;
   label: string;
   reminderAt: string;
-  notificationOn: boolean;
-  alertOn: boolean;
 }
 
 export interface StateProps {
