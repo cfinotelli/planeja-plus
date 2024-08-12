@@ -6,8 +6,26 @@ import { Lists } from "../_components/lists";
 import HeadingTemplate from "../_components/heading-template";
 import { GoBackButton } from "../_components/go-back-button";
 import { ListIcon } from "@/assets/icons";
+import { useEffect, useRef } from "react";
+import { InterstitialAd } from "react-native-google-mobile-ads";
+import { adUnitId } from "@/lib/ads";
+
+const interstitial = InterstitialAd.createForAdRequest(adUnitId, {
+  keywords: ["fashion", "clothing"],
+});
 
 export default function Page() {
+  const fisrtRender = useRef(true);
+
+  useEffect(() => {
+    if (fisrtRender.current === false) {
+      return;
+    }
+
+    interstitial.load();
+    fisrtRender.current = false;
+  }, []);
+
   return (
     <View className="flex-1 w-full">
       <HeadingTemplate

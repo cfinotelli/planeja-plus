@@ -2,11 +2,13 @@ import { useFonts } from "expo-font";
 import { Slot } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
 import { useEffect } from "react";
-import "react-native-reanimated";
 
 import { SafeAreaView } from "react-native";
 import { StatusBar } from "expo-status-bar";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
+
+import "react-native-reanimated";
+import "expo-dev-client";
 
 SplashScreen.preventAutoHideAsync();
 
