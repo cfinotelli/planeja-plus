@@ -1,15 +1,14 @@
-import { useRepoStore } from "@/stories/repo-store";
 import { ReminderProps } from "@/stories/repo-store.types";
-import { Feather, FontAwesome, MaterialIcons } from "@expo/vector-icons";
-import { formatRelative } from "date-fns";
+import { FontAwesome, MaterialIcons } from "@expo/vector-icons";
+import { formatRelative, isBefore } from "date-fns";
 import { ptBR } from "date-fns/locale";
 import { Animated, Text, TouchableOpacity, View } from "react-native";
 import colors from "tailwindcss/colors";
-import { ConfirmationModal } from "./confirmation-modal";
 import { useEffect, useState } from "react";
 import { ReminderNotification } from "@/actions/notification.action";
 import { ClockIcon } from "@/assets/icons";
 import { UpdateReminderItem } from "./update-reminder-item";
+import { cn } from "@/lib/cn";
 
 interface ReminderItemProps {
   reminder: ReminderProps;
@@ -32,6 +31,8 @@ export const ReminderItem = ({ drag, reminder }: ReminderItemProps) => {
     handleNotiification();
   }, [reminder.reminderAt]);
 
+  const memoBeforeReminder = isBefore(reminder.reminderAt, new Date());
+
   return (
     <Animated.View className="flex-row flex-1 items-center border border-slate-500 rounded-md p-2">
       {drag && (
@@ -51,13 +52,23 @@ export const ReminderItem = ({ drag, reminder }: ReminderItemProps) => {
       <View className="flex-1 flex-row items-center justify-between">
         <View className="flex-col flex-1 items-center justify-start">
           {reminder.label && (
-            <Text className="font-bold text-base text-left w-full">
+            <Text
+              className={cn(
+                memoBeforeReminder && "text-slate-500",
+                "font-bold text-base text-left w-full"
+              )}
+            >
               {reminder.label}
             </Text>
           )}
           <View className="flex-row items-center text-left w-full">
             <ClockIcon size={14} />
-            <Text className="text-sm ml-1">
+            <Text
+              className={cn(
+                memoBeforeReminder && "text-slate-500",
+                "text-sm ml-1"
+              )}
+            >
               {formatRelative(reminder.reminderAt, new Date(), {
                 locale: ptBR,
               })}
@@ -65,20 +76,24 @@ export const ReminderItem = ({ drag, reminder }: ReminderItemProps) => {
           </View>
         </View>
 
-        <TouchableOpacity onPress={() => setModalUpdateReminderVisible(true)}>
-          <FontAwesome
-            name="pencil-square-o"
-            size={20}
-            color={colors.cyan[600]}
-          />
-        </TouchableOpacity>
+        {!memoBeforeReminder && (
+          <TouchableOpacity onPress={() => setModalUpdateReminderVisible(true)}>
+            <FontAwesome
+              name="pencil-square-o"
+              size={20}
+              color={colors.cyan[600]}
+            />
+          </TouchableOpacity>
+        )}
       </View>
 
-      <UpdateReminderItem
-        visible={modalUpdateReminderVisible}
-        onClose={() => setModalUpdateReminderVisible(false)}
-        reminder={reminder}
-      />
+      {!memoBeforeReminder && (
+        <UpdateReminderItem
+          visible={modalUpdateReminderVisible}
+          onClose={() => setModalUpdateReminderVisible(false)}
+          reminder={reminder}
+        />
+      )}
     </Animated.View>
   );
 };

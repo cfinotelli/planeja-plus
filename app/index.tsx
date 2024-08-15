@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { ScrollView, Text, View } from "react-native";
+import React, { useMemo } from "react";
+import { ScrollView, View } from "react-native";
 import HeadingTemplate from "./_components/heading-template";
 import { ListItemLink } from "./_components/list-item-link";
 import { Logo } from "./_components/logo";
@@ -8,7 +8,7 @@ import { NavigationTabs } from "./_components/navigation-tabs";
 import { HomeLabelList } from "./_components/home-label-list";
 import { ReminderItem } from "./_components/reminder-item";
 import { ReminderProps } from "@/stories/repo-store.types";
-import { isToday } from "date-fns";
+import { isBefore, isToday } from "date-fns";
 import { Notifications } from "@/lib/notifications";
 import { RemindersEmpry } from "./_components/reminders-empty";
 import { ListsEmpty } from "./_components/lists-empty";
@@ -24,8 +24,14 @@ Notifications.setNotificationHandler({
 export default function Page() {
   const { lists, reminders } = useRepoStore((state) => state);
 
-  const todayReminders: ReminderProps[] = reminders.filter((reminder) =>
-    isToday(reminder.reminderAt)
+  const todayReminders: ReminderProps[] = useMemo(
+    () =>
+      reminders.filter(
+        (reminder) =>
+          isToday(reminder.reminderAt) &&
+          !isBefore(reminder.reminderAt, new Date())
+      ),
+    []
   );
 
   return (
