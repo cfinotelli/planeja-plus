@@ -8,10 +8,12 @@ export async function ReminderNotification({
   reminderAt: Date;
 }) {
   await Notifications.requestPermissionsAsync();
-  const { status: existingStatus } = await Notifications.getPermissionsAsync();
 
-  let finalStatus = existingStatus;
-  if (existingStatus !== "granted") {
+  const { status: hasStatus } = await Notifications.getPermissionsAsync();
+
+  let finalStatus = hasStatus;
+
+  if (hasStatus !== "granted") {
     const { status } = await Notifications.requestPermissionsAsync();
     finalStatus = status;
   }
