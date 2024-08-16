@@ -22,11 +22,6 @@
       },
       "package": "com.cfinotelli.planejaplus"
     },
-    "web": {
-      "bundler": "metro",
-      "output": "static",
-      "favicon": "./assets/images/favicon.png"
-    },
     "plugins": [
       "expo-router",
       "expo-notifications"
