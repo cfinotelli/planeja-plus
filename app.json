@@ -24,7 +24,14 @@
     },
     "plugins": [
       "expo-router",
-      "expo-notifications"
+      "expo-notifications",
+      [
+        "react-native-google-mobile-ads",
+        {
+          "androidAppId": "ca-app-pub-4712672148809066~2178403059",
+          "iosAppId": "ca-app-pub-4712672148809066~2178403059"
+        }
+      ]
     ],
     "experiments": {
       "typedRoutes": true

@@ -7,6 +7,7 @@ import "react-native-reanimated";
 import { SafeAreaView } from "react-native";
 import { StatusBar } from "expo-status-bar";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
+import { MobileAds } from "react-native-google-mobile-ads";
 
 SplashScreen.preventAutoHideAsync();
 
@@ -24,6 +25,8 @@ export default function RootLayout() {
   if (!loaded) {
     return null;
   }
+
+  MobileAds().initialize();
 
   return (
     <SafeAreaView className="flex-1 bg-slate-200">

@@ -55,9 +55,6 @@ export const Reminders = () => {
         renderItem={({ item, drag, isActive }) => (
           <ReminderItem reminder={item} drag={drag} isActive={isActive} />
         )}
-        ListEmptyComponent={() => (
-          <RemindersEmpry localHandler="remindersList" />
-        )}
       />
     </>
   );
