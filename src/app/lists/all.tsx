@@ -1,6 +1,4 @@
-import Entypo from "@expo/vector-icons/Entypo";
 import { Text, View } from "react-native";
-import colors from "tailwindcss/colors";
 import { CreateListLink } from "../_components/create-list-link";
 import { Lists } from "../_components/lists";
 import HeadingTemplate from "../_components/heading-template";
