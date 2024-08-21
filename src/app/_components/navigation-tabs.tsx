@@ -1,6 +1,4 @@
 import { ClockIcon, ListIcon } from "@/assets/icons";
-import Entypo from "@expo/vector-icons/Entypo";
-import SimpleLineIcons from "@expo/vector-icons/SimpleLineIcons";
 import { Link } from "expo-router";
 import { Text, TouchableOpacity, View } from "react-native";
 
