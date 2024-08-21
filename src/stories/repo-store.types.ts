@@ -2,6 +2,7 @@ export interface ListProps {
   id: string;
   title: string;
   createdAt: string;
+  userId?: string;
 }
 
 export interface ItemProps {
@@ -10,12 +11,14 @@ export interface ItemProps {
   listId: string;
   createdAt: string;
   isChecked: boolean;
+  userId?: string;
 }
 
 export interface ReminderProps {
   id: string;
   label: string;
   reminderAt: string;
+  userId?: string;
 }
 
 export interface StateProps {

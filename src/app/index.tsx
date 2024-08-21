@@ -9,10 +9,10 @@ import { ReminderItem } from "./_components/reminder-item";
 import { isBefore, isToday } from "date-fns";
 import { RemindersEmpry } from "./_components/reminders-empty";
 import { ListsEmpty } from "./_components/lists-empty";
-import { useFetchLists } from "@/app/api/use-fetch-lists";
 import { Notifications } from "@/lib/notifications";
 import { useRepoStore } from "@/stories/repo-store";
 import { ReminderProps } from "@/stories/repo-store.types";
+import { useGetLists } from "@/actions/api/get-hooks/use-get-lists";
 
 Notifications.setNotificationHandler({
   handleNotification: async () => ({
@@ -34,6 +34,10 @@ export default function Page() {
       ),
     []
   );
+
+  const { data, isLoading } = useGetLists();
+
+  console.log({ data, isLoading });
 
   return (
     <View className="flex-1 w-full">

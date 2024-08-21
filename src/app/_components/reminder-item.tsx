@@ -5,10 +5,10 @@ import { Animated, Text, TouchableOpacity, View } from "react-native";
 import colors from "tailwindcss/colors";
 import { useEffect, useState } from "react";
 import { UpdateReminderItem } from "./update-reminder-item";
-import { cn } from "@/lib/cn";
-import { ReminderNotification } from "@/actions/notification.action";
+import { ReminderNotification } from "@/actions/notifications/notification.action";
 import { ClockIcon } from "@/assets/icons";
 import { ReminderProps } from "@/stories/repo-store.types";
+import { cn } from "@/lib/cn";
 
 interface ReminderItemProps {
   reminder: ReminderProps;

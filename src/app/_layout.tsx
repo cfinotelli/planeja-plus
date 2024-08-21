@@ -31,7 +31,7 @@ export default function RootLayout() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <SafeAreaView className="flex-1 bg-slate-200">
+      <SafeAreaView className="flex-1">
         <StatusBar style="auto" translucent hideTransitionAnimation="fade" />
         <GestureHandlerRootView className="flex-1 items-center justify-center">
           <Slot />
