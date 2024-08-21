@@ -1,12 +1,4 @@
-import { ReminderProps } from "@/stories/repo-store.types";
-import {
-  Modal,
-  Switch,
-  Text,
-  TextInput,
-  TouchableOpacity,
-  View,
-} from "react-native";
+import { Modal, Text, TextInput, TouchableOpacity, View } from "react-native";
 import { DateSelectModeTabs } from "./date-select-mode-tabs";
 import { useState } from "react";
 import DateTimePicker, {
@@ -14,9 +6,9 @@ import DateTimePicker, {
 } from "@react-native-community/datetimepicker";
 import { format } from "date-fns";
 import { FooterButton } from "./footer-button";
-import { useRepoStore } from "@/stories/repo-store";
 import { ConfirmationModal } from "./confirmation-modal";
-import colors from "tailwindcss/colors";
+import { ReminderProps } from "@/stories/repo-store.types";
+import { useRepoStore } from "@/stories/repo-store";
 
 type UpdateReminderProps = ReminderProps;
 

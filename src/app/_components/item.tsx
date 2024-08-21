@@ -3,11 +3,11 @@ import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import React, { useEffect, useState } from "react";
 import { Text, TouchableOpacity, View } from "react-native";
 import colors from "tailwindcss/colors";
-import { ItemProps } from "@/stories/repo-store.types";
 import { UpdateItemElementArea } from "./update-item-element-area";
 import Checkbox from "expo-checkbox";
-import { useRepoStore } from "@/stories/repo-store";
 import { cn } from "@/lib/cn";
+import { useRepoStore } from "@/stories/repo-store";
+import { ItemProps } from "@/stories/repo-store.types";
 
 interface ItemElementProps {
   item: ItemProps;

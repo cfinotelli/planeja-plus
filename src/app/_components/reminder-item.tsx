@@ -1,14 +1,14 @@
-import { ReminderProps } from "@/stories/repo-store.types";
 import { FontAwesome, MaterialIcons } from "@expo/vector-icons";
 import { formatRelative, isBefore } from "date-fns";
 import { ptBR } from "date-fns/locale";
 import { Animated, Text, TouchableOpacity, View } from "react-native";
 import colors from "tailwindcss/colors";
 import { useEffect, useState } from "react";
-import { ReminderNotification } from "@/actions/notification.action";
-import { ClockIcon } from "@/assets/icons";
 import { UpdateReminderItem } from "./update-reminder-item";
 import { cn } from "@/lib/cn";
+import { ReminderNotification } from "@/actions/notification.action";
+import { ClockIcon } from "@/assets/icons";
+import { ReminderProps } from "@/stories/repo-store.types";
 
 interface ReminderItemProps {
   reminder: ReminderProps;

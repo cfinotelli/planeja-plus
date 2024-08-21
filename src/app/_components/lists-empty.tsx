@@ -1,8 +1,8 @@
 import React from "react";
 import { Text, View } from "react-native";
 import { CreateItemLink } from "./create-item-link";
-import { ListIcon } from "@/assets/icons";
 import { CreateListLink } from "./create-list-link";
+import { ListIcon } from "@/assets/icons";
 
 interface ListsEmptyProps {
   listId?: string;

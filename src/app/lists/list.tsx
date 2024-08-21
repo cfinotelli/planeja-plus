@@ -7,18 +7,18 @@ import HeadingTemplate from "../_components/heading-template";
 
 import { ConfirmationModal } from "../_components/confirmation-modal";
 
-import { formatRelativeToNow } from "@/helpers/format-relative-to-now";
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 import React, { useRef, useState } from "react";
 import colors from "tailwindcss/colors";
 import { GoBackButton } from "../_components/go-back-button";
-import { useRepoStore } from "@/stories/repo-store";
-import { ItemProps, ListProps } from "@/stories/repo-store.types";
-import { cn } from "@/lib/cn";
 import { Item } from "../_components/item";
 import { CreateItemLink } from "../_components/create-item-link";
 import { ListsEmpty } from "../_components/lists-empty";
 import { FooterButton } from "../_components/footer-button";
+import { formatRelativeToNow } from "@/helpers/format-relative-to-now";
+import { cn } from "@/lib/cn";
+import { useRepoStore } from "@/stories/repo-store";
+import { ListProps, ItemProps } from "@/stories/repo-store.types";
 
 export default function Page() {
   const ref = useRef(null);

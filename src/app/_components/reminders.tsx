@@ -1,5 +1,3 @@
-import { useRepoStore } from "@/stories/repo-store";
-import { ReminderProps } from "@/stories/repo-store.types";
 import { Text } from "react-native";
 import DraggableFlatList, {
   DragEndParams,
@@ -7,6 +5,8 @@ import DraggableFlatList, {
 import { ReminderItem } from "./reminder-item";
 import { RemindersEmpry } from "./reminders-empty";
 import { isBefore } from "date-fns";
+import { useRepoStore } from "@/stories/repo-store";
+import { ReminderProps } from "@/stories/repo-store.types";
 
 export const Reminders = () => {
   const { reminders, updatedRemindersOnDrag } = useRepoStore((state) => state);

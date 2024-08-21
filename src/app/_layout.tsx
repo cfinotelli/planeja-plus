@@ -8,7 +8,11 @@ import { SafeAreaView } from "react-native";
 import { StatusBar } from "expo-status-bar";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+
 SplashScreen.preventAutoHideAsync();
+
+const queryClient = new QueryClient();
 
 export default function RootLayout() {
   const [loaded] = useFonts({
@@ -26,11 +30,13 @@ export default function RootLayout() {
   }
 
   return (
-    <SafeAreaView className="flex-1 bg-slate-200">
-      <StatusBar style="auto" translucent hideTransitionAnimation="fade" />
-      <GestureHandlerRootView className="flex-1 items-center justify-center">
-        <Slot />
-      </GestureHandlerRootView>
-    </SafeAreaView>
+    <QueryClientProvider client={queryClient}>
+      <SafeAreaView className="flex-1 bg-slate-200">
+        <StatusBar style="auto" translucent hideTransitionAnimation="fade" />
+        <GestureHandlerRootView className="flex-1 items-center justify-center">
+          <Slot />
+        </GestureHandlerRootView>
+      </SafeAreaView>
+    </QueryClientProvider>
   );
 }

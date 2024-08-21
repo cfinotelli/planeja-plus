@@ -1,4 +1,4 @@
-import { BlockIcon, CheckIcon } from "@/assets/icons";
+import { CheckIcon, BlockIcon } from "@/assets/icons";
 import { cn } from "@/lib/cn";
 import { GestureResponderEvent, Text, TouchableOpacity } from "react-native";
 

@@ -1,5 +1,3 @@
-import { useRepoStore } from "@/stories/repo-store";
-import { ListProps } from "@/stories/repo-store.types";
 import React, { useRef } from "react";
 import { Text } from "react-native";
 import DraggableFlatList, {
@@ -7,6 +5,8 @@ import DraggableFlatList, {
 } from "react-native-draggable-flatlist";
 import { ListItemLink } from "./list-item-link";
 import { ListsEmpty } from "./lists-empty";
+import { useRepoStore } from "@/stories/repo-store";
+import { ListProps } from "@/stories/repo-store.types";
 
 export const Lists = () => {
   const ref = useRef(null);

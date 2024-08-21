@@ -1,11 +1,11 @@
-import { useRepoStore } from "@/stories/repo-store";
-import { ItemProps } from "@/stories/repo-store.types";
 import EvilIcons from "@expo/vector-icons/EvilIcons";
 import FontAwesome5 from "@expo/vector-icons/FontAwesome5";
 import React, { useState } from "react";
 import { TextInput, TouchableOpacity, View } from "react-native";
 import colors from "tailwindcss/colors";
 import { ConfirmationModal } from "./confirmation-modal";
+import { useRepoStore } from "@/stories/repo-store";
+import { ItemProps } from "@/stories/repo-store.types";
 
 export const UpdateItemElementArea = ({
   item,

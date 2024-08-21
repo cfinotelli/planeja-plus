@@ -1,12 +1,12 @@
 import { useNavigation } from "expo-router";
 import { useState } from "react";
-import { Text, TextInput, TouchableOpacity, View } from "react-native";
+import { Text, TextInput, View } from "react-native";
 import { GoBackButton } from "../_components/go-back-button";
 import HeadingTemplate from "../_components/heading-template";
 import { LinkButton } from "../_components/link-button";
+import { FooterButton } from "../_components/footer-button";
 import { useRepoStore } from "@/stories/repo-store";
 import { Crypto } from "@/lib/crypto";
-import { FooterButton } from "../_components/footer-button";
 
 export default function Page() {
   const navigation = useNavigation();
