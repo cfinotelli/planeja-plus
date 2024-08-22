@@ -21,10 +21,10 @@ export const HomeLabelList = ({
         "flex-row flex-1 items-center justify-between pb-2 border-b border-slate-300 mb-3"
       )}
     >
-      <Text className="font-bold text-lg capitalize text-slate-50">
+      <Text className="font-bold text-lg capitalize dark:text-slate-50">
         {title}
       </Text>
-      <Text className="text-sm text-slate-300">
+      <Text className="text-sm dark:text-slate-300">
         {quantity} {sectionType}
         {isOdd && `s`}
       </Text>

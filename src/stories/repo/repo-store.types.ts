@@ -18,7 +18,7 @@ export interface ReminderProps {
   reminderAt: string;
 }
 
-export interface StateProps {
+export interface RepoStateProps {
   items: ItemProps[];
   createItem: (item: ItemProps) => void;
   updateItem: (item: ItemProps) => void;

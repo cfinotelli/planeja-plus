@@ -3,15 +3,15 @@ import { ScrollView, View } from "react-native";
 import HeadingTemplate from "./_components/heading-template";
 import { ListItemLink } from "./_components/list-item-link";
 import { Logo } from "./_components/logo";
-import { useRepoStore } from "@/stories/repo-store";
 import { NavigationTabs } from "./_components/navigation-tabs";
 import { HomeLabelList } from "./_components/home-label-list";
 import { ReminderItem } from "./_components/reminder-item";
-import { ReminderProps } from "@/stories/repo-store.types";
 import { isBefore, isToday } from "date-fns";
 import { Notifications } from "@/lib/notifications";
 import { RemindersEmpry } from "./_components/reminders-empty";
 import { ListsEmpty } from "./_components/lists-empty";
+import { useRepoStore } from "@/stories/repo/repo-store";
+import { ReminderProps } from "@/stories/repo/repo-store.types";
 
 Notifications.setNotificationHandler({
   handleNotification: async () => ({

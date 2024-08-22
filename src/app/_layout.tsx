@@ -2,11 +2,11 @@ import { useFonts } from "expo-font";
 import { Slot } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
 import { useEffect } from "react";
-import "react-native-reanimated";
-
 import { SafeAreaView } from "react-native";
 import { StatusBar } from "expo-status-bar";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
+
+import "react-native-reanimated";
 
 SplashScreen.preventAutoHideAsync();
 
@@ -26,7 +26,7 @@ export default function RootLayout() {
   }
 
   return (
-    <SafeAreaView className="flex-1 bg-slate-800">
+    <SafeAreaView className="flex-1 dark:bg-slate-800">
       <StatusBar style="auto" translucent hideTransitionAnimation="fade" />
       <GestureHandlerRootView className="flex-1 items-center justify-center">
         <Slot />

@@ -1,4 +1,4 @@
-import { ListProps, ItemProps } from "../repo-store.types";
+import { ListProps } from "../repo-store.types";
 
 export function createListHelper(lists: ListProps[], newList: ListProps) {
   const allreadyExists =

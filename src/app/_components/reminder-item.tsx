@@ -1,4 +1,3 @@
-import { ReminderProps } from "@/stories/repo-store.types";
 import { FontAwesome, MaterialIcons } from "@expo/vector-icons";
 import { formatRelative, isBefore } from "date-fns";
 import { ptBR } from "date-fns/locale";
@@ -9,12 +8,15 @@ import { ClockIcon } from "@/assets/icons";
 import { UpdateReminderItem } from "./update-reminder-item";
 import { cn } from "@/lib/cn";
 import { ReminderNotification } from "@/actions/notification.action";
+import { useColorScheme } from "nativewind";
+import { ReminderProps } from "@/stories/repo/repo-store.types";
 
 interface ReminderItemProps {
   reminder: ReminderProps;
 }
 
 export const ReminderItem = ({ reminder }: ReminderItemProps) => {
+  const { colorScheme } = useColorScheme();
   const [modalUpdateReminderVisible, setModalUpdateReminderVisible] =
     useState(false);
 
@@ -32,13 +34,28 @@ export const ReminderItem = ({ reminder }: ReminderItemProps) => {
   const memoBeforeReminder = isBefore(reminder.reminderAt, new Date());
 
   return (
-    <Animated.View className="flex-row flex-1 items-center bg-slate-700 rounded-md p-2 px-4">
+    <Animated.View
+      className={cn(
+        colorScheme === "light" && "bg-slate-300",
+        "flex-row flex-1 items-center dark:bg-slate-700 rounded-md p-2 px-4"
+      )}
+    >
       <View className="flex-1 flex-row items-center justify-between">
         <View className="flex-col flex-1 items-center justify-start space-y-2">
           {reminder.label && (
             <Text
               className={cn(
-                memoBeforeReminder ? "text-slate-400" : "text-slate-50",
+                memoBeforeReminder
+                  ? `${
+                      colorScheme === "light"
+                        ? "text-slate-700"
+                        : "dark:text-slate-300"
+                    }`
+                  : `${
+                      colorScheme === "light"
+                        ? "text-slate-900"
+                        : "dark:text-slate-300"
+                    }`,
                 "font-bold text-base text-left w-full"
               )}
             >
@@ -49,7 +66,17 @@ export const ReminderItem = ({ reminder }: ReminderItemProps) => {
             <ClockIcon size={14} />
             <Text
               className={cn(
-                memoBeforeReminder ? "text-slate-400" : "text-slate-50",
+                memoBeforeReminder
+                  ? `${
+                      colorScheme === "light"
+                        ? "text-slate-700"
+                        : "dark:text-slate-300"
+                    }`
+                  : `${
+                      colorScheme === "light"
+                        ? "text-slate-900"
+                        : "dark:text-slate-300"
+                    }`,
                 "text-sm ml-1"
               )}
             >

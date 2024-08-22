@@ -4,7 +4,6 @@ import { Text, TextInput, View } from "react-native";
 import { GoBackButton } from "../_components/go-back-button";
 import HeadingTemplate from "../_components/heading-template";
 import { LinkButton } from "../_components/link-button";
-import { useRepoStore } from "@/stories/repo-store";
 import { Crypto } from "@/lib/crypto";
 import DateTimePicker, {
   DateTimePickerEvent,
@@ -12,6 +11,9 @@ import DateTimePicker, {
 import { format } from "date-fns";
 import { FooterButton } from "../_components/footer-button";
 import { DateSelectModeTabs } from "../_components/date-select-mode-tabs";
+import { useRepoStore } from "@/stories/repo/repo-store";
+import { useColorScheme } from "nativewind";
+import { cn } from "@/lib/cn";
 
 interface ReminderItemProps {
   label: string;
@@ -20,6 +22,7 @@ interface ReminderItemProps {
 
 export default function Page() {
   const navigation = useNavigation();
+  const { colorScheme } = useColorScheme();
   const { createReminder } = useRepoStore((state) => state);
   const [reminderLabel, setReminderLabel] = useState<ReminderItemProps>(
     {} as ReminderItemProps
@@ -113,7 +116,9 @@ export default function Page() {
 
       <View className="flex-1 h-full justify-between p-5">
         <View className="space-y-3">
-          <Text className="text-slate-50">Dê um nome ao lembrete:</Text>
+          <Text className="dark:text-slate-50 font-bold text-base">
+            Dê um nome ao lembrete:
+          </Text>
 
           <TextInput
             placeholder="Beber água"
@@ -127,19 +132,32 @@ export default function Page() {
               });
             }}
             value={reminderLabel?.label}
-            className="p-3 px-4 bg-slate-700 border-solid rounded-lg text-slate-200 placeholder-slate-300 focus:border focus:border-cyan-400"
+            className={cn(
+              colorScheme === "light" && "bg-slate-300",
+              "p-3 px-4 dark:bg-slate-700 border-solid rounded-lg dark:text-slate-200  focus:border focus:border-cyan-400"
+            )}
           />
 
           <DateSelectModeTabs handleShowMode={handleToggleMode} />
 
           {currentDateSelected && (
-            <Text className="bg-slate-600 p-2 rounded-md text-slate-200">
+            <Text
+              className={cn(
+                colorScheme === "light" && "bg-slate-300",
+                "dark:bg-slate-600 p-2 rounded-md dark:text-slate-200"
+              )}
+            >
               {currentDateSelected}
             </Text>
           )}
 
           {currentHourSelected && (
-            <Text className="bg-slate-600 p-2 rounded-md text-slate-200">
+            <Text
+              className={cn(
+                colorScheme === "light" && "bg-slate-300",
+                "dark:bg-slate-600 p-2 rounded-md dark:text-slate-200"
+              )}
+            >
               {currentHourSelected}
             </Text>
           )}

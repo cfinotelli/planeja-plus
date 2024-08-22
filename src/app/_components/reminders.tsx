@@ -1,10 +1,10 @@
-import { useRepoStore } from "@/stories/repo-store";
 import { ScrollView, Text, View } from "react-native";
 
 import { ReminderItem } from "./reminder-item";
 import { RemindersEmpry } from "./reminders-empty";
 import { isBefore } from "date-fns";
 import React from "react";
+import { useRepoStore } from "@/stories/repo/repo-store";
 
 export const Reminders = () => {
   const { reminders } = useRepoStore((state) => state);
@@ -19,7 +19,7 @@ export const Reminders = () => {
 
   return (
     <ScrollView>
-      <Text className="pt-3 pb-2 pl-5 text-bold text-xl text-slate-50">
+      <Text className="pt-3 pb-2 pl-5 text-bold text-xl dark:text-slate-50">
         Meus Lembretes
       </Text>
 
@@ -39,7 +39,7 @@ export const Reminders = () => {
 
       {memoBeforeReminder.length > 0 && (
         <>
-          <Text className="pt-3 pb-2 pl-5 text-bold text-xl text-slate-50">
+          <Text className="pt-3 pb-2 pl-5 text-bold text-xl dark:text-slate-50">
             Lembretes antigos
           </Text>
 
