@@ -12,11 +12,9 @@ import { ReminderNotification } from "@/actions/notification.action";
 
 interface ReminderItemProps {
   reminder: ReminderProps;
-  drag?: () => void;
-  isActive?: boolean;
 }
 
-export const ReminderItem = ({ drag, reminder }: ReminderItemProps) => {
+export const ReminderItem = ({ reminder }: ReminderItemProps) => {
   const [modalUpdateReminderVisible, setModalUpdateReminderVisible] =
     useState(false);
 
@@ -35,20 +33,6 @@ export const ReminderItem = ({ drag, reminder }: ReminderItemProps) => {
 
   return (
     <Animated.View className="flex-row flex-1 items-center border border-slate-500 rounded-md p-2">
-      {drag && (
-        <TouchableOpacity
-          onLongPress={drag}
-          activeOpacity={0.7}
-          className="mr-2 border-r  h-full border-slate-400 items-center justify-center"
-        >
-          <MaterialIcons
-            name="drag-indicator"
-            size={22}
-            color={colors.slate[400]}
-          />
-        </TouchableOpacity>
-      )}
-
       <View className="flex-1 flex-row items-center justify-between">
         <View className="flex-col flex-1 items-center justify-start">
           {reminder.label && (

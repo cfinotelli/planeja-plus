@@ -11,11 +11,9 @@ import { cn } from "@/lib/cn";
 
 interface ItemElementProps {
   item: ItemProps;
-  drag?: () => void;
-  isActive?: boolean;
 }
 
-export const Item = ({ item, drag }: ItemElementProps) => {
+export const Item = ({ item }: ItemElementProps) => {
   const { updateItem } = useRepoStore((state) => state);
   const [updating, setUpdating] = useState<boolean>(false);
   const [isChecked, setIsChecked] = useState<boolean>(() => {
@@ -37,29 +35,12 @@ export const Item = ({ item, drag }: ItemElementProps) => {
   return (
     <View className="border border-slate-400 p-2 rounded-md flex-row justify-between items-center">
       {!updating && (
-        <TouchableOpacity
-          disabled={updating}
-          onLongPress={drag}
-          activeOpacity={0.7}
-          className="mr-1"
-        >
-          <MaterialIcons
-            name="drag-indicator"
-            size={16}
-            color={updating ? colors.red[300] : colors.slate[400]}
-          />
-        </TouchableOpacity>
-      )}
-
-      {!updating && (
-        <View className="border-l border-slate-400 pl-2">
-          <Checkbox
-            value={isChecked}
-            onValueChange={setIsChecked}
-            className="w-4 h-4"
-            color={colors.cyan[600]}
-          />
-        </View>
+        <Checkbox
+          value={isChecked}
+          onValueChange={setIsChecked}
+          className="w-4 h-4 ml-1"
+          color={colors.cyan[600]}
+        />
       )}
 
       <View className="flex-1 flex-row justify-between items-center">
