@@ -1,6 +1,9 @@
 import { useLocalSearchParams, useNavigation } from "expo-router";
 import {
   FlatList,
+  KeyboardAvoidingView,
+  Platform,
+  ScrollView,
   Text,
   TextInput,
   TouchableOpacity,
@@ -68,7 +71,10 @@ export default function Page() {
     currentUpdatedList.title !== currentList.title;
 
   return (
-    <View className="flex-1 w-full">
+    <KeyboardAvoidingView
+      behavior={Platform.OS === "ios" ? "padding" : "height"}
+      className="flex-1 w-full"
+    >
       <HeadingTemplate
         headerChildren={
           <>
@@ -136,14 +142,23 @@ export default function Page() {
       />
 
       {!updating && (
-        <FlatList
-          className="p-4"
-          data={currentItems}
-          contentContainerStyle={{ gap: 12, paddingBottom: 20 }}
-          keyExtractor={(item) => item.id}
-          renderItem={({ item }) => <Item item={item} />}
-          ListEmptyComponent={() => <ListsEmpty listId={currentList.id} />}
-        />
+        <>
+          <ScrollView>
+            <View className="p-2 py-5 pb-6 gap-2">
+              {currentItems.length >= 1 ? (
+                <>
+                  {currentItems.map((item) => (
+                    <View key={item.id}>
+                      <Item item={item} />
+                    </View>
+                  ))}
+                </>
+              ) : (
+                <ListsEmpty listId={currentList.id} />
+              )}
+            </View>
+          </ScrollView>
+        </>
       )}
 
       {updating && (
@@ -178,6 +193,6 @@ export default function Page() {
         onAccept={handleDeleteList}
         onCancel={() => setModalVisible(false)}
       />
-    </View>
+    </KeyboardAvoidingView>
   );
 }
