@@ -33,7 +33,7 @@ export const LinkButton = ({
     >
       <TouchableOpacity
         activeOpacity={0.7}
-        className="w-full p-2 rounded-md items-center bg-slate-700 flex-row justify-center space-x-2"
+        className="w-full p-2 rounded-md items-center bg-slate-600 flex-row justify-center space-x-2"
       >
         {icon && icon}
         <Text className="text-slate-200 font-medium">{title}</Text>

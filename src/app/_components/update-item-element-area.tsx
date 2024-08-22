@@ -34,13 +34,12 @@ export const UpdateItemElementArea = ({
 
   return (
     <View className="flex-row justify-between items-center flex-1">
-      <TouchableOpacity className="mr-1" onPress={() => setModalVisible(true)}>
+      <TouchableOpacity className="mr-3" onPress={() => setModalVisible(true)}>
         <EvilIcons name="trash" size={22} color={colors.red[400]} />
       </TouchableOpacity>
 
       <TextInput
-        className="px-2 flex-1 rounded-md bg-slate-300 text-slate-950 mr-2"
-        autoFocus
+        className="px-2 flex-1 rounded-md bg-slate-300 text-slate-950 mr-2 h-full"
         value={itemUpdated.name}
         onChange={(e) => {
           const value = e.nativeEvent.text;

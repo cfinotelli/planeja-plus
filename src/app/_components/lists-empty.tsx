@@ -10,17 +10,17 @@ interface ListsEmptyProps {
 
 export const ListsEmpty = ({ listId }: ListsEmptyProps) => {
   return (
-    <View className="mt-4 space-y-4 items-center justify-center border border-slate-300 rounded-lg p-2">
+    <View className="mt-4 space-y-4 items-center justify-center bg-slate-700 rounded-lg p-2 py-4">
       <ListIcon size={30} />
 
       {listId && (
-        <Text className="text-sm text-slate-600 mb-4">
+        <Text className="text-sm text-slate-50 mb-4">
           Esta lista não contem items, vamos inserir agora?
         </Text>
       )}
 
       {!listId && (
-        <Text className="text-sm text-slate-600 mb-4">
+        <Text className="text-sm text-slate-50 mb-4">
           Você ainda não tem listas criadas, vamos criar uma?
         </Text>
       )}

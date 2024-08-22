@@ -32,17 +32,17 @@ export const Item = ({ item }: ItemElementProps) => {
   }, [isChecked]);
 
   return (
-    <View className="border border-slate-400 p-2 rounded-md flex-row justify-between items-center">
+    <View className="bg-slate-700 p-3 py-4 rounded-md flex-row justify-between items-center">
       {!updating && (
         <Checkbox
           value={isChecked}
           onValueChange={setIsChecked}
-          className="w-4 h-4 ml-1"
+          className="w-4 h-4 mr-3"
           color={colors.cyan[600]}
         />
       )}
 
-      <View className="flex-1 flex-row justify-between items-center">
+      <View className="flex-1 flex-row justify-between items-center h-8">
         {updating ? (
           <UpdateItemElementArea setUpdating={setUpdating} item={item} />
         ) : (
@@ -50,8 +50,8 @@ export const Item = ({ item }: ItemElementProps) => {
             <Text
               className={cn(
                 item.isChecked
-                  ? "line-through text-slate-600"
-                  : "font-bold text-slate-900",
+                  ? "line-through text-slate-300"
+                  : "font-bold text-slate-50",
                 "pl-2"
               )}
             >

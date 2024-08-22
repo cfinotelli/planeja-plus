@@ -32,13 +32,13 @@ export const ReminderItem = ({ reminder }: ReminderItemProps) => {
   const memoBeforeReminder = isBefore(reminder.reminderAt, new Date());
 
   return (
-    <Animated.View className="flex-row flex-1 items-center border border-slate-500 rounded-md p-2">
+    <Animated.View className="flex-row flex-1 items-center bg-slate-700 rounded-md p-2 px-4">
       <View className="flex-1 flex-row items-center justify-between">
-        <View className="flex-col flex-1 items-center justify-start">
+        <View className="flex-col flex-1 items-center justify-start space-y-2">
           {reminder.label && (
             <Text
               className={cn(
-                memoBeforeReminder && "text-slate-500",
+                memoBeforeReminder ? "text-slate-400" : "text-slate-50",
                 "font-bold text-base text-left w-full"
               )}
             >
@@ -49,7 +49,7 @@ export const ReminderItem = ({ reminder }: ReminderItemProps) => {
             <ClockIcon size={14} />
             <Text
               className={cn(
-                memoBeforeReminder && "text-slate-500",
+                memoBeforeReminder ? "text-slate-400" : "text-slate-50",
                 "text-sm ml-1"
               )}
             >

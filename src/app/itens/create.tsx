@@ -7,6 +7,7 @@ import HeadingTemplate from "../_components/heading-template";
 import { LinkButton } from "../_components/link-button";
 import { useRepoStore } from "@/stories/repo-store";
 import { ItemProps } from "@/stories/repo-store.types";
+import { FooterButton } from "../_components/footer-button";
 
 export default function Page() {
   const navigation = useNavigation();
@@ -19,12 +20,14 @@ export default function Page() {
 
   const handleGoBack = () => navigation.goBack();
 
+  const createItemEnable = newItem.name !== undefined && listId !== undefined;
+
   const handleCreateItem = () => {
-    if (!newItem.name || !listId) {
+    if (!createItemEnable) {
       return;
     }
 
-    if (newItem.name) {
+    if (newItem.name && listId) {
       createItem({
         id: Crypto.randomUUID(),
         createdAt: new Date().toISOString(),
@@ -65,7 +68,7 @@ export default function Page() {
       <View className="flex-1 h-full justify-between p-5">
         <View className="flex-1 justify-start gap-2">
           <View className="space-y-3">
-            <Text>Dê um nome ao seu novo item:</Text>
+            <Text className="text-slate-50">Dê um nome ao seu novo item:</Text>
             <TextInput
               placeholder="Produtos de limpeza do mês"
               onChange={(e) => {
@@ -78,20 +81,16 @@ export default function Page() {
                 });
               }}
               value={newItem.name}
-              className="p-1 px-4 border border-slate-400 border-solid rounded-lg"
+              className="p-3 px-4 bg-slate-700 border-solid rounded-lg text-slate-200 placeholder-slate-300 focus:border focus:border-cyan-400"
             />
           </View>
         </View>
 
-        <TouchableOpacity
+        <FooterButton
+          available={createItemEnable}
+          title="Criar item"
           onPress={handleCreateItem}
-          activeOpacity={0.7}
-          className="w-full p-2 rounded-md  bg-slate-700"
-        >
-          <Text className="text-center text-slate-100 font-semibold text-sm">
-            Criar item
-          </Text>
-        </TouchableOpacity>
+        />
       </View>
     </View>
   );
