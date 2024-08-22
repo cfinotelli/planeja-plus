@@ -1,43 +1,28 @@
 import { useRepoStore } from "@/stories/repo-store";
-import { ListProps } from "@/stories/repo-store.types";
-import React, { useRef } from "react";
-import { Text } from "react-native";
-import DraggableFlatList, {
-  DragEndParams,
-} from "react-native-draggable-flatlist";
+import React from "react";
+import { ScrollView, Text, View } from "react-native";
+
 import { ListItemLink } from "./list-item-link";
 import { ListsEmpty } from "./lists-empty";
 
 export const Lists = () => {
-  const ref = useRef(null);
-  const { lists, updatedListsOnDrag } = useRepoStore((state) => state);
-
-  const handleDragEnd =
-    ({ data }: DragEndParams<ListProps>) =>
-    () =>
-      updatedListsOnDrag(data);
+  const { lists } = useRepoStore((state) => state);
 
   return (
     <>
       <Text className="pt-3 pb-2 pl-5 text-bold text-xl">Minhas listas</Text>
 
-      <DraggableFlatList
-        ref={ref}
-        className="p-5 pt-0"
-        data={lists}
-        contentContainerStyle={{ gap: 12, paddingBottom: 20 }}
-        keyExtractor={(item) => item.id}
-        onDragEnd={handleDragEnd}
-        renderItem={({ item, drag, isActive }) => (
-          <ListItemLink
-            id={item.id}
-            itemTitle={item.title}
-            drag={drag}
-            isActive={isActive}
-          />
+      <ScrollView className="p-2">
+        {lists.length >= 1 ? (
+          lists.map((list) => (
+            <View key={list.id} className="mb-2">
+              <ListItemLink id={list.id} itemTitle={list.title} />
+            </View>
+          ))
+        ) : (
+          <ListsEmpty />
         )}
-        ListEmptyComponent={() => <ListsEmpty />}
-      />
+      </ScrollView>
     </>
   );
 };

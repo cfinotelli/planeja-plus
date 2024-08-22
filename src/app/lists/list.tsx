@@ -1,19 +1,23 @@
 import { useLocalSearchParams, useNavigation } from "expo-router";
-import { Text, TextInput, TouchableOpacity, View } from "react-native";
-import DraggableFlatList, {
-  DragEndParams,
-} from "react-native-draggable-flatlist";
+import {
+  FlatList,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  View,
+} from "react-native";
+
 import HeadingTemplate from "../_components/heading-template";
 
 import { ConfirmationModal } from "../_components/confirmation-modal";
 
 import { formatRelativeToNow } from "@/helpers/format-relative-to-now";
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
-import React, { useRef, useState } from "react";
+import React, { useState } from "react";
 import colors from "tailwindcss/colors";
 import { GoBackButton } from "../_components/go-back-button";
 import { useRepoStore } from "@/stories/repo-store";
-import { ItemProps, ListProps } from "@/stories/repo-store.types";
+import { ListProps } from "@/stories/repo-store.types";
 import { cn } from "@/lib/cn";
 import { Item } from "../_components/item";
 import { CreateItemLink } from "../_components/create-item-link";
@@ -21,12 +25,12 @@ import { ListsEmpty } from "../_components/lists-empty";
 import { FooterButton } from "../_components/footer-button";
 
 export default function Page() {
-  const ref = useRef(null);
   const navigation = useNavigation();
   const { id } = useLocalSearchParams<{ id: string }>();
 
-  const { items, lists, updatedItemsOnDrag, updateList, removeList } =
-    useRepoStore((state) => state);
+  const { items, lists, updateList, removeList } = useRepoStore(
+    (state) => state
+  );
 
   const currentItems = items.filter((item) => item.listId === id);
   const currentList = lists.find((list) => list.id === id);
@@ -48,11 +52,6 @@ export default function Page() {
   const handleToogleUpdateList = () => {
     setUpdating((prev) => !prev);
   };
-
-  const handleDragEnd =
-    ({ data }: DragEndParams<ItemProps>) =>
-    () =>
-      updatedItemsOnDrag(data);
 
   const handleConfirmUpdate = () => {
     updateList(currentUpdatedList);
@@ -137,16 +136,12 @@ export default function Page() {
       />
 
       {!updating && (
-        <DraggableFlatList
-          ref={ref}
+        <FlatList
           className="p-4"
           data={currentItems}
-          onDragEnd={handleDragEnd}
           contentContainerStyle={{ gap: 12, paddingBottom: 20 }}
           keyExtractor={(item) => item.id}
-          renderItem={({ item, drag, isActive }) => (
-            <Item item={item} drag={drag} isActive={isActive} />
-          )}
+          renderItem={({ item }) => <Item item={item} />}
           ListEmptyComponent={() => <ListsEmpty listId={currentList.id} />}
         />
       )}

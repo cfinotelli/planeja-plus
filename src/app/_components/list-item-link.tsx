@@ -8,21 +8,16 @@ interface ListItemLinkProps {
   id: string;
   itemTitle: string;
   pathname?: string;
-  drag?: () => void;
-  isActive?: boolean;
 }
 
 export const ListItemLink = ({
   id,
   itemTitle,
   pathname,
-  drag,
-  isActive,
 }: ListItemLinkProps) => {
   return (
     <Animated.View>
       <Link
-        disabled={isActive}
         href={{
           pathname: "/lists/list",
           params: {
@@ -36,18 +31,7 @@ export const ListItemLink = ({
           activeOpacity={0.7}
           className="border border-slate-300 rounded-lg p-2 justify-between flex-row items-center"
         >
-          <View className="flex-row items-center">
-            {drag && (
-              <TouchableOpacity onLongPress={drag} activeOpacity={0.7}>
-                <MaterialIcons
-                  name="drag-indicator"
-                  size={16}
-                  color={colors.slate[400]}
-                />
-              </TouchableOpacity>
-            )}
-            <Text className="font-semibold ml-1">{itemTitle}</Text>
-          </View>
+          <Text className="font-semibold ml-1">{itemTitle}</Text>
           <AntDesign name="right" size={24} color={colors.cyan[600]} />
         </TouchableOpacity>
       </Link>
