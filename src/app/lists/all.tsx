@@ -15,7 +15,7 @@ export default function Page() {
 
             <View className="flex-row justify-center items-center space-x-2 p-1 rounded-md active:bg-slate-400">
               <ListIcon size={24} />
-              <Text className="font-bold text-sm capitalize text-slate-100">
+              <Text className="font-bold text-sm capitalize text-slate-50">
                 Listas
               </Text>
             </View>

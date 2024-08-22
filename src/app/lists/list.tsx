@@ -100,22 +100,28 @@ export default function Page() {
           </>
         }
         footerChildren={
-          <View className="p-2 items-center justify-start bg-slate-200 flex-1 rounded-md space-y-2">
-            <Text className="text-xs truncate font-bold text-start w-full items-center">
+          <View className="p-2 items-center justify-start bg-slate-700 flex-1 rounded-md space-y-2">
+            <Text className="text-xs truncate font-bold text-start w-full items-center text-slate-200">
               Lista:{" "}
               <Text className="font-normal italic items-center">
                 {currentList && currentList.title}
               </Text>
             </Text>
 
-            <Text className="text-xs truncate font-bold text-start w-full items-center">
+            <Text className="text-xs truncate font-bold text-start w-full items-center text-slate-200">
               Criada em:{" "}
               <Text className="font-normal italic items-center">
                 {formatRelativeToNow(currentList.createdAt)}
               </Text>
             </Text>
 
-            <Text className="text-xs truncate font-bold text-start w-full items-center mb-2">
+            <Text
+              className={cn(
+                currentItems.length >= 1 && "mb-3",
+                updating && "mb-3",
+                "text-xs truncate font-bold text-start w-full items-center text-slate-200"
+              )}
+            >
               Itens desta lista:{" "}
               <Text className="font-normal italic items-center">
                 {currentItems.length}
@@ -130,9 +136,9 @@ export default function Page() {
               <TouchableOpacity
                 onPress={() => setModalVisible(true)}
                 activeOpacity={0.7}
-                className="w-full p-2 rounded-md bg-red-400 items-center border border-slate-200"
+                className="w-full p-2 rounded-md bg-red-400 items-center"
               >
-                <Text className="text-red-800 font-bold ">
+                <Text className="text-red-900 font-bold ">
                   Deseja deletar está lista?
                 </Text>
               </TouchableOpacity>
@@ -144,7 +150,7 @@ export default function Page() {
       {!updating && (
         <>
           <ScrollView>
-            <View className="p-2 py-5 pb-6 gap-2">
+            <View className="px-2 py-5 pb-6 gap-2">
               {currentItems.length >= 1 ? (
                 <>
                   {currentItems.map((item) => (
@@ -154,7 +160,9 @@ export default function Page() {
                   ))}
                 </>
               ) : (
-                <ListsEmpty listId={currentList.id} />
+                <View>
+                  <ListsEmpty listId={currentList.id} />
+                </View>
               )}
             </View>
           </ScrollView>
@@ -176,7 +184,7 @@ export default function Page() {
                 });
               }}
               value={currentUpdatedList.title}
-              className="p-1 px-4 border border-slate-400 border-solid rounded-lg"
+              className="p-3 px-4 bg-slate-700 border-solid rounded-lg text-slate-50 placeholder-slate-300 focus:border focus:border-cyan-400"
             />
           </View>
 

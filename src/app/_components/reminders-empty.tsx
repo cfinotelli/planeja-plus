@@ -9,10 +9,10 @@ export const RemindersEmpry = ({
   localHandler: "home" | "remindersList";
 }) => {
   return (
-    <View className="mt-4 space-y-4 border border-slate-300 rounded-lg p-2 items-center justify-center">
+    <View className="mt-4 space-y-4 bg-slate-700 rounded-lg p-2 items-center justify-center py-4">
       <ClockIcon size={30} />
 
-      <Text className="text-sm text-slate-600 mb-4">
+      <Text className="text-sm text-slate-50 mb-4">
         Não há lembretes{" "}
         {localHandler === "home"
           ? "para hoje"

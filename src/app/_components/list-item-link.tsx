@@ -29,9 +29,9 @@ export const ListItemLink = ({
         <TouchableOpacity
           key={id}
           activeOpacity={0.7}
-          className="border border-slate-300 rounded-lg p-2 justify-between flex-row items-center"
+          className="rounded-lg p-3 py-4 justify-between flex-row items-center bg-slate-700"
         >
-          <Text className="font-semibold ml-1">{itemTitle}</Text>
+          <Text className="font-semibold ml-1 text-slate-50">{itemTitle}</Text>
           <AntDesign name="right" size={24} color={colors.cyan[600]} />
         </TouchableOpacity>
       </Link>

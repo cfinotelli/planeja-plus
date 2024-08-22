@@ -50,7 +50,7 @@ export default function Page() {
 
       <View className="flex-1 h-full justify-between p-5">
         <View className="space-y-3">
-          <Text>Dê um nome a lista:</Text>
+          <Text className="text-slate-50">Dê um nome a lista:</Text>
           <TextInput
             placeholder="Produtos de limpeza do mês"
             onChange={(e) => {
@@ -58,7 +58,7 @@ export default function Page() {
               setNewList(text);
             }}
             value={newList}
-            className="p-1 px-4 border border-slate-400 border-solid rounded-lg"
+            className="p-3 px-4 bg-slate-700 border-solid rounded-lg text-slate-200 placeholder-slate-300 focus:border focus:border-cyan-400"
           />
         </View>
 

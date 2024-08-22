@@ -10,10 +10,12 @@ export const Lists = () => {
 
   return (
     <>
-      <Text className="pt-3 pb-2 pl-5 text-bold text-xl">Minhas listas</Text>
+      <Text className="pt-3 pb-2 pl-5 text-bold text-xl text-slate-50">
+        Minhas listas
+      </Text>
 
       <ScrollView>
-        <View className="p-2 pb-6 gap-2">
+        <View className="px-2 pb-6 gap-2">
           {lists.length >= 1 ? (
             lists.map((list) => (
               <View key={list.id}>
@@ -21,7 +23,9 @@ export const Lists = () => {
               </View>
             ))
           ) : (
-            <ListsEmpty />
+            <View>
+              <ListsEmpty />
+            </View>
           )}
         </View>
       </ScrollView>

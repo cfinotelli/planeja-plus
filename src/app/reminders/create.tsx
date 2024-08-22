@@ -113,7 +113,7 @@ export default function Page() {
 
       <View className="flex-1 h-full justify-between p-5">
         <View className="space-y-3">
-          <Text>Dê um nome ao lembrete:</Text>
+          <Text className="text-slate-50">Dê um nome ao lembrete:</Text>
 
           <TextInput
             placeholder="Beber água"
@@ -127,19 +127,19 @@ export default function Page() {
               });
             }}
             value={reminderLabel?.label}
-            className="p-1 px-4 border border-slate-400 border-solid rounded-lg mb-3"
+            className="p-3 px-4 bg-slate-700 border-solid rounded-lg text-slate-200 placeholder-slate-300 focus:border focus:border-cyan-400"
           />
 
           <DateSelectModeTabs handleShowMode={handleToggleMode} />
 
           {currentDateSelected && (
-            <Text className="border border-slate-400 p-2 rounded-md bg-slate-300">
+            <Text className="bg-slate-600 p-2 rounded-md text-slate-200">
               {currentDateSelected}
             </Text>
           )}
 
           {currentHourSelected && (
-            <Text className="border border-slate-400 p-2 rounded-md bg-slate-300">
+            <Text className="bg-slate-600 p-2 rounded-md text-slate-200">
               {currentHourSelected}
             </Text>
           )}
