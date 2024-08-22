@@ -1,9 +1,6 @@
 import { useRepoStore } from "@/stories/repo-store";
-import { ReminderProps } from "@/stories/repo-store.types";
-import { FlatList, ScrollView, Text, View } from "react-native";
-import DraggableFlatList, {
-  DragEndParams,
-} from "react-native-draggable-flatlist";
+import { ScrollView, Text, View } from "react-native";
+
 import { ReminderItem } from "./reminder-item";
 import { RemindersEmpry } from "./reminders-empty";
 import { isBefore } from "date-fns";
@@ -25,11 +22,13 @@ export const Reminders = () => {
       <Text className="pt-3 pb-2 pl-5 text-bold text-xl">Meus Lembretes</Text>
 
       {memoAfterReminder.length >= 1 ? (
-        memoAfterReminder.map((reminder) => (
-          <View className="m-2" key={reminder.id}>
-            <ReminderItem reminder={reminder} key={reminder.id} />
-          </View>
-        ))
+        <View className="p-2 pb-6 gap-2">
+          {memoAfterReminder.map((reminder) => (
+            <View key={reminder.id}>
+              <ReminderItem reminder={reminder} key={reminder.id} />
+            </View>
+          ))}
+        </View>
       ) : (
         <View className="mb-2 mx-2">
           <RemindersEmpry localHandler="remindersList" />
@@ -43,11 +42,13 @@ export const Reminders = () => {
           </Text>
 
           {memoBeforeReminder.length >= 1 ? (
-            memoBeforeReminder.map((reminder) => (
-              <View className="mb-2 mx-2" key={reminder.id}>
-                <ReminderItem reminder={reminder} key={reminder.id} />
-              </View>
-            ))
+            <View className="p-2 pb-6 gap-2">
+              {memoBeforeReminder.map((reminder) => (
+                <View key={reminder.id}>
+                  <ReminderItem reminder={reminder} key={reminder.id} />
+                </View>
+              ))}
+            </View>
           ) : (
             <View className="mb-2 mx-2">
               <RemindersEmpry localHandler="remindersList" />

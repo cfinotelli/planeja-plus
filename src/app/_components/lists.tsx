@@ -12,16 +12,18 @@ export const Lists = () => {
     <>
       <Text className="pt-3 pb-2 pl-5 text-bold text-xl">Minhas listas</Text>
 
-      <ScrollView className="p-2">
-        {lists.length >= 1 ? (
-          lists.map((list) => (
-            <View key={list.id} className="mb-2">
-              <ListItemLink id={list.id} itemTitle={list.title} />
-            </View>
-          ))
-        ) : (
-          <ListsEmpty />
-        )}
+      <ScrollView>
+        <View className="p-2 pb-6 gap-2">
+          {lists.length >= 1 ? (
+            lists.map((list) => (
+              <View key={list.id}>
+                <ListItemLink id={list.id} itemTitle={list.title} />
+              </View>
+            ))
+          ) : (
+            <ListsEmpty />
+          )}
+        </View>
       </ScrollView>
     </>
   );
