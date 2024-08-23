@@ -19,17 +19,19 @@ import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 import React, { useState } from "react";
 import colors from "tailwindcss/colors";
 import { GoBackButton } from "../_components/go-back-button";
-import { useRepoStore } from "@/stories/repo-store";
-import { ListProps } from "@/stories/repo-store.types";
 import { cn } from "@/lib/cn";
 import { Item } from "../_components/item";
 import { CreateItemLink } from "../_components/create-item-link";
 import { ListsEmpty } from "../_components/lists-empty";
 import { FooterButton } from "../_components/footer-button";
+import { useRepoStore } from "@/stories/repo/repo-store";
+import { ListProps } from "@/stories/repo/repo-store.types";
+import { useColorScheme } from "nativewind";
 
 export default function Page() {
   const navigation = useNavigation();
   const { id } = useLocalSearchParams<{ id: string }>();
+  const { colorScheme } = useColorScheme();
 
   const { items, lists, updateList, removeList } = useRepoStore(
     (state) => state
@@ -100,15 +102,20 @@ export default function Page() {
           </>
         }
         footerChildren={
-          <View className="p-2 items-center justify-start bg-slate-700 flex-1 rounded-md space-y-2">
-            <Text className="text-xs truncate font-bold text-start w-full items-center text-slate-200">
+          <View
+            className={cn(
+              colorScheme === "light" && "bg-slate-200",
+              "p-2 items-center justify-start dark:bg-slate-700 flex-1 rounded-md space-y-2"
+            )}
+          >
+            <Text className="text-xs truncate font-bold text-start w-full items-center dark:text-slate-200">
               Lista:{" "}
               <Text className="font-normal italic items-center">
                 {currentList && currentList.title}
               </Text>
             </Text>
 
-            <Text className="text-xs truncate font-bold text-start w-full items-center text-slate-200">
+            <Text className="text-xs truncate font-bold text-start w-full items-center dark:text-slate-200">
               Criada em:{" "}
               <Text className="font-normal italic items-center">
                 {formatRelativeToNow(currentList.createdAt)}
@@ -119,7 +126,7 @@ export default function Page() {
               className={cn(
                 currentItems.length >= 1 && "mb-3",
                 updating && "mb-3",
-                "text-xs truncate font-bold text-start w-full items-center text-slate-200"
+                "text-xs truncate font-bold text-start w-full items-center dark:text-slate-200"
               )}
             >
               Itens desta lista:{" "}
@@ -172,7 +179,9 @@ export default function Page() {
       {updating && (
         <View className="flex-1 h-full justify-between p-5">
           <View className="space-y-3">
-            <Text>Nome da lista:</Text>
+            <Text className="dark:text-slate-50 font-bold text-base">
+              Nome da lista:
+            </Text>
             <TextInput
               onChange={(e) => {
                 const { text } = e.nativeEvent;
@@ -184,7 +193,10 @@ export default function Page() {
                 });
               }}
               value={currentUpdatedList.title}
-              className="p-3 px-4 bg-slate-700 border-solid rounded-lg text-slate-50 placeholder-slate-300 focus:border focus:border-cyan-400"
+              className={cn(
+                colorScheme === "light" && "bg-slate-200 text-slate-800",
+                "p-3 px-4 dark:bg-slate-700 border-solid rounded-lg dark:text-slate-50 focus:border focus:border-cyan-400"
+              )}
             />
           </View>
 

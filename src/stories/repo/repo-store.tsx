@@ -8,10 +8,10 @@ import {
   updatedListsOnDragHelper,
 } from "./helpers/lists-repo.helpers";
 import {
-  StateProps,
   ItemProps,
   ListProps,
   ReminderProps,
+  RepoStateProps,
 } from "./repo-store.types";
 import {
   createItemHelper,
@@ -27,7 +27,7 @@ import {
 } from "./helpers/reminders-repo.helpers";
 
 export const useRepoStore = create(
-  persist<StateProps>(
+  persist<RepoStateProps>(
     (set) => ({
       items: [],
       createItem: (item: ItemProps) =>
