@@ -22,8 +22,6 @@ export const ToggleThemeSwitch = () => {
     setColorTheme(colorScheme === "light" ? "dark" : "light");
   }, [colorScheme, setColorTheme, toggleColorScheme]);
 
-  console.log({ colorTheme, colorScheme });
-
   return (
     <Switch
       onValueChange={handleToggleColorScheme}

@@ -2,7 +2,7 @@ import { cn } from "@/lib/cn";
 import AntDesign from "@expo/vector-icons/AntDesign";
 import { Link } from "expo-router";
 import { useColorScheme } from "nativewind";
-import { Text, TouchableOpacity, View } from "react-native";
+import { Text, TouchableOpacity } from "react-native";
 import Animated from "react-native-reanimated";
 import colors from "tailwindcss/colors";
 interface ListItemLinkProps {

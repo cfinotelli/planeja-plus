@@ -1,6 +1,6 @@
 import React, { useMemo } from "react";
 import { ScrollView, View } from "react-native";
-import HeadingTemplate from "./_components/heading-template";
+import { HeadingTemplate } from "./_components/heading-template";
 import { ListItemLink } from "./_components/list-item-link";
 import { Logo } from "./_components/logo";
 import { NavigationTabs } from "./_components/navigation-tabs";
@@ -12,6 +12,7 @@ import { RemindersEmpry } from "./_components/reminders-empty";
 import { ListsEmpty } from "./_components/lists-empty";
 import { useRepoStore } from "@/stories/repo/repo-store";
 import { ReminderProps } from "@/stories/repo/repo-store.types";
+import { ToggleThemeSwitch } from "./_components/toggle-theme-switch";
 
 Notifications.setNotificationHandler({
   handleNotification: async () => ({
@@ -31,16 +32,20 @@ export default function Page() {
           isToday(reminder.reminderAt) &&
           !isBefore(reminder.reminderAt, new Date())
       ),
-    []
+    [reminders]
   );
 
   return (
     <View className="flex-1 w-full">
       <HeadingTemplate
         headerChildren={
-          <View className="flex-row space-x-1 items-center">
-            <Logo />
-          </View>
+          <>
+            <View className="flex-row space-x-1 items-center">
+              <Logo />
+            </View>
+
+            <ToggleThemeSwitch />
+          </>
         }
         footerChildren={<NavigationTabs />}
       />

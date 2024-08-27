@@ -1,6 +1,5 @@
 import { useLocalSearchParams, useNavigation } from "expo-router";
 import {
-  FlatList,
   KeyboardAvoidingView,
   Platform,
   ScrollView,
@@ -10,7 +9,7 @@ import {
   View,
 } from "react-native";
 
-import HeadingTemplate from "../_components/heading-template";
+import { HeadingTemplate } from "../_components/heading-template";
 
 import { ConfirmationModal } from "../_components/confirmation-modal";
 

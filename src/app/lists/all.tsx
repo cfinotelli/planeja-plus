@@ -1,7 +1,7 @@
 import { Text, View } from "react-native";
 import { CreateListLink } from "../_components/create-list-link";
 import { Lists } from "../_components/lists";
-import HeadingTemplate from "../_components/heading-template";
+import { HeadingTemplate } from "../_components/heading-template";
 import { GoBackButton } from "../_components/go-back-button";
 import { ListIcon } from "@/assets/icons";
 

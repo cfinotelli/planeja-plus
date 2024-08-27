@@ -1,22 +1,19 @@
 import React, { ReactNode } from "react";
-import { Switch, View } from "react-native";
-import { ToggleThemeSwitch } from "./toggle-theme-switch";
+import { View } from "react-native";
 
-interface HeadingTemplate {
+interface HeadingTemplateProps {
   headerChildren?: ReactNode;
   footerChildren?: ReactNode;
 }
 
-const HeadingTemplate = ({
+export const HeadingTemplate = ({
   headerChildren,
   footerChildren,
-}: HeadingTemplate) => {
+}: HeadingTemplateProps) => {
   return (
-    <View className="flex-col space-y-2 bg-slate-800 p-5 pb-2 pt-12">
+    <View className="flex-col space-y-5 bg-slate-900/90 p-5 pt-12">
       <View className="flex-row justify-between items-center">
         {headerChildren}
-
-        <ToggleThemeSwitch />
       </View>
 
       {footerChildren && (
@@ -27,5 +24,3 @@ const HeadingTemplate = ({
     </View>
   );
 };
-
-export default HeadingTemplate;
