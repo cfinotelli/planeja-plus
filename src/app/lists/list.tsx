@@ -1,18 +1,14 @@
 import { useLocalSearchParams, useNavigation } from "expo-router";
 import {
-  FlatList,
   KeyboardAvoidingView,
   Platform,
   ScrollView,
   Text,
-  TextInput,
   TouchableOpacity,
   View,
 } from "react-native";
 
-import HeadingTemplate from "../_components/heading-template";
-
-import { ConfirmationModal } from "../_components/confirmation-modal";
+import { HeadingTemplate } from "../_components/heading-template";
 
 import { formatRelativeToNow } from "@/helpers/format-relative-to-now";
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
@@ -23,25 +19,23 @@ import { cn } from "@/lib/cn";
 import { Item } from "../_components/item";
 import { CreateItemLink } from "../_components/create-item-link";
 import { ListsEmpty } from "../_components/lists-empty";
-import { FooterButton } from "../_components/footer-button";
 import { useRepoStore } from "@/stories/repo/repo-store";
 import { ListProps } from "@/stories/repo/repo-store.types";
 import { useColorScheme } from "nativewind";
+import { UpdatingList } from "./_components/updating-list";
+import { AskByDestroyList } from "./_components/ask-by-destroy-list";
 
 export default function Page() {
   const navigation = useNavigation();
   const { id } = useLocalSearchParams<{ id: string }>();
   const { colorScheme } = useColorScheme();
 
-  const { items, lists, updateList, removeList } = useRepoStore(
-    (state) => state
-  );
+  const { items, lists, updateList } = useRepoStore((state) => state);
 
   const currentItems = items.filter((item) => item.listId === id);
   const currentList = lists.find((list) => list.id === id);
 
   const [updating, setUpdating] = useState<boolean>(false);
-  const [isModalVisible, setModalVisible] = useState(false);
   const [currentUpdatedList, setCurrentUpdatedList] = useState<ListProps>(
     () => {
       return currentList?.id ? currentList : ({} as ListProps);
@@ -63,13 +57,7 @@ export default function Page() {
     setUpdating(false);
   };
 
-  const handleDeleteList = () => {
-    removeList(currentList.id);
-    setUpdating(false);
-    handleGoBack();
-  };
-
-  let enableSaveButton: boolean =
+  const enableSaveButton: boolean =
     currentUpdatedList.title !== currentList.title;
 
   return (
@@ -140,15 +128,10 @@ export default function Page() {
             )}
 
             {updating && (
-              <TouchableOpacity
-                onPress={() => setModalVisible(true)}
-                activeOpacity={0.7}
-                className="w-full p-2 rounded-md bg-red-400 items-center"
-              >
-                <Text className="text-red-900 font-bold ">
-                  Deseja deletar está lista?
-                </Text>
-              </TouchableOpacity>
+              <AskByDestroyList
+                listId={currentList.id}
+                setUpdating={setUpdating}
+              />
             )}
           </View>
         }
@@ -177,42 +160,13 @@ export default function Page() {
       )}
 
       {updating && (
-        <View className="flex-1 h-full justify-between p-5">
-          <View className="space-y-3">
-            <Text className="dark:text-slate-50 font-bold text-base">
-              Nome da lista:
-            </Text>
-            <TextInput
-              onChange={(e) => {
-                const { text } = e.nativeEvent;
-                setCurrentUpdatedList((prev) => {
-                  return {
-                    ...prev,
-                    title: text,
-                  };
-                });
-              }}
-              value={currentUpdatedList.title}
-              className={cn(
-                colorScheme === "light" && "bg-slate-200 text-slate-800",
-                "p-3 px-4 dark:bg-slate-700 border-solid rounded-lg dark:text-slate-50 focus:border focus:border-cyan-400"
-              )}
-            />
-          </View>
-
-          <FooterButton
-            available={enableSaveButton}
-            title="Confirmar alteração"
-            onPress={handleConfirmUpdate}
-          />
-        </View>
+        <UpdatingList
+          currentUpdatedList={currentUpdatedList}
+          setCurrentUpdatedList={setCurrentUpdatedList}
+          enableSaveButton={enableSaveButton}
+          handleConfirmUpdate={handleConfirmUpdate}
+        />
       )}
-
-      <ConfirmationModal
-        visible={isModalVisible}
-        onAccept={handleDeleteList}
-        onCancel={() => setModalVisible(false)}
-      />
     </KeyboardAvoidingView>
   );
 }

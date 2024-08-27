@@ -1,5 +1,5 @@
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { Text, TouchableOpacity, View } from "react-native";
 import colors from "tailwindcss/colors";
 import { UpdateItemElementArea } from "./update-item-element-area";
@@ -25,13 +25,13 @@ export const Item = ({ item }: ItemElementProps) => {
     return false;
   });
 
-  const handleUpdateOnToogleCheck = () => {
+  const handleUpdateOnToogleCheck = useCallback(() => {
     updateItem({ ...item, isChecked });
-  };
+  }, [isChecked, item, updateItem]);
 
   useEffect(() => {
     handleUpdateOnToogleCheck();
-  }, [isChecked]);
+  }, [handleUpdateOnToogleCheck, isChecked]);
 
   return (
     <View

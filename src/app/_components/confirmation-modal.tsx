@@ -32,10 +32,12 @@ export const ConfirmationModal = ({
           <Text className="text-lg mb-4 dark:text-slate-50">
             Deseja mesmo fazer isso?
           </Text>
+
           <View className="flex-row justify-end space-x-2">
             <TouchableOpacity onPress={onCancel} className="p-2 rounded-md">
               <Text className="dark:text-slate-200">Cancelar</Text>
             </TouchableOpacity>
+
             <TouchableOpacity
               onPress={onAccept}
               className="bg-red-400 p-2 px-4 rounded-md"

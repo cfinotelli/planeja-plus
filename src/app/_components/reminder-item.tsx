@@ -1,9 +1,9 @@
-import { FontAwesome, MaterialIcons } from "@expo/vector-icons";
+import { FontAwesome } from "@expo/vector-icons";
 import { formatRelative, isBefore } from "date-fns";
 import { ptBR } from "date-fns/locale";
 import { Animated, Text, TouchableOpacity, View } from "react-native";
 import colors from "tailwindcss/colors";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { ClockIcon } from "@/assets/icons";
 import { UpdateReminderItem } from "./update-reminder-item";
 import { cn } from "@/lib/cn";
@@ -20,16 +20,16 @@ export const ReminderItem = ({ reminder }: ReminderItemProps) => {
   const [modalUpdateReminderVisible, setModalUpdateReminderVisible] =
     useState(false);
 
-  const handleNotiification = async () => {
+  const handleNotiification = useCallback(async () => {
     await ReminderNotification({
       label: reminder.label,
       reminderAt: new Date(reminder.reminderAt),
     });
-  };
+  }, [reminder.label, reminder.reminderAt]);
 
   useEffect(() => {
     handleNotiification();
-  }, [reminder.reminderAt]);
+  }, [handleNotiification, reminder.reminderAt]);
 
   const memoBeforeReminder = isBefore(reminder.reminderAt, new Date());
 
