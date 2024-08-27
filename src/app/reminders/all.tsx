@@ -1,6 +1,6 @@
 import { Text, View } from "react-native";
 import colors from "tailwindcss/colors";
-import HeadingTemplate from "../_components/heading-template";
+import { HeadingTemplate } from "../_components/heading-template";
 import { GoBackButton } from "../_components/go-back-button";
 import { SimpleLineIcons } from "@expo/vector-icons";
 import { Reminders } from "../_components/reminders";
