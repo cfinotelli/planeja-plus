@@ -1,5 +1,5 @@
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Text, TouchableOpacity, View } from "react-native";
 import colors from "tailwindcss/colors";
 import { UpdateItemElementArea } from "./update-item-element-area";
@@ -25,13 +25,15 @@ export const Item = ({ item }: ItemElementProps) => {
     return false;
   });
 
-  const handleUpdateOnToogleCheck = useCallback(() => {
+  const handleUpdateOnToogleCheck = () => {
     updateItem({ ...item, isChecked });
-  }, [isChecked, item, updateItem]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  };
 
   useEffect(() => {
     handleUpdateOnToogleCheck();
-  }, [handleUpdateOnToogleCheck, isChecked]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isChecked]);
 
   return (
     <View
@@ -44,7 +46,7 @@ export const Item = ({ item }: ItemElementProps) => {
         <Checkbox
           value={isChecked}
           onValueChange={setIsChecked}
-          className="w-4 h-4 mr-3"
+          className="w-5 h-5 mr-3"
           color={colors.cyan[600]}
         />
       )}

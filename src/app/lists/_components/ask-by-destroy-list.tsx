@@ -35,11 +35,13 @@ export const AskByDestroyList = ({
         </Text>
       </TouchableOpacity>
 
-      <ConfirmationModal
-        visible={isModalVisible}
-        onAccept={handleDeleteList}
-        onCancel={() => setModalVisible(false)}
-      />
+      {isModalVisible && (
+        <ConfirmationModal
+          visible={isModalVisible}
+          onAccept={handleDeleteList}
+          onCancel={() => setModalVisible(false)}
+        />
+      )}
     </>
   );
 };
