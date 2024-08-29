@@ -1,11 +1,27 @@
-import { Text, View } from "react-native";
+import { View } from "react-native";
+
+import {
+  BannerAd,
+  BannerAdSize,
+  TestIds,
+} from "react-native-google-mobile-ads";
+
+const adUnitId = __DEV__
+  ? TestIds.ADAPTIVE_BANNER
+  : "ca-app-pub-xxxxxxxxxxxxx/yyyyyyyyyyyyyy";
 
 export const BannerAds = () => {
   return (
-    <View className="p-1 flex-1 w-full items-center justify-center max-h-12 min-h-12">
-      <View className="w-full bg-slate-300 border border-slate-400 flex-1 rounded-md items-center justify-center">
-        <Text className="font-bold text-slate-50">banner ads</Text>
-      </View>
+    <View className="flex-1 w-full items-center justify-center">
+      <BannerAd
+        unitId={adUnitId}
+        size={BannerAdSize.ANCHORED_ADAPTIVE_BANNER}
+        requestOptions={{
+          networkExtras: {
+            collapsible: "bottom",
+          },
+        }}
+      />
     </View>
   );
 };
