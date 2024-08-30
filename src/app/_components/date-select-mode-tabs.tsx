@@ -1,12 +1,5 @@
-import { CalendarIcon, ClockIcon } from "@/assets/icons";
-import { cn } from "@/lib/cn";
 import { useColorScheme } from "nativewind";
-import {
-  View,
-  TouchableOpacity,
-  Text,
-  GestureResponderEvent,
-} from "react-native";
+import { View } from "react-native";
 import { TouchModeTab } from "./touch-mode-tab";
 
 export const DateSelectModeTabs = ({
@@ -17,12 +10,14 @@ export const DateSelectModeTabs = ({
   const { colorScheme } = useColorScheme();
 
   return (
-    <View className="flex-row gap-1 mt-2">
+    <View className="flex-row mt-3">
       <TouchModeTab
         pressFn={() => handleShowMode("date")}
         colorScheme={colorScheme}
         label="Selecionar data"
       />
+
+      <View className="w-2" />
 
       <TouchModeTab
         pressFn={() => handleShowMode("time")}
