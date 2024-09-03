@@ -7,29 +7,37 @@ import { useCallback, useEffect, useState } from "react";
 import { ClockIcon } from "@/assets/icons";
 import { UpdateReminderItem } from "./update-reminder-item";
 import { cn } from "@/lib/cn";
-import { ReminderNotification } from "@/actions/notification.action";
+import { reminderNotification } from "@/actions/notification.action";
 import { useColorScheme } from "nativewind";
 import { ReminderProps } from "@/stories/repo/repo-store.types";
+import { NotificationModule } from "@/actions/notification/notification-module";
 
 interface ReminderItemProps {
   reminder: ReminderProps;
 }
 
 export const ReminderItem = ({ reminder }: ReminderItemProps) => {
+  const notificationModule = new NotificationModule();
+
   const { colorScheme } = useColorScheme();
   const [modalUpdateReminderVisible, setModalUpdateReminderVisible] =
     useState(false);
 
-  const handleNotiification = useCallback(async () => {
-    await ReminderNotification({
-      label: reminder.label,
-      reminderAt: new Date(reminder.reminderAt),
-    });
+  const handleNotification = useCallback(async () => {
+    await reminderNotification(
+      {
+        label: reminder.label,
+        reminderAt: new Date(reminder.reminderAt),
+      },
+      notificationModule
+    );
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [reminder.label, reminder.reminderAt]);
 
   useEffect(() => {
-    handleNotiification();
-  }, [handleNotiification, reminder.reminderAt]);
+    handleNotification();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [reminder.reminderAt]);
 
   const memoBeforeReminder = isBefore(reminder.reminderAt, new Date());
 
