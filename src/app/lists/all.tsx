@@ -22,9 +22,8 @@ export default function Page() {
           </View>
         }
         footerChildren={<CreateListLink />}
+        pageContent={<Lists />}
       />
-
-      <Lists />
     </View>
   );
 }

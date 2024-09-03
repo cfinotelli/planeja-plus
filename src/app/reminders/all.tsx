@@ -24,9 +24,8 @@ export default function Page() {
           </View>
         }
         footerChildren={<CreateReminderLink />}
+        pageContent={<Reminders />}
       />
-
-      <Reminders />
     </View>
   );
 }

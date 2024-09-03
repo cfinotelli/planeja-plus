@@ -12,7 +12,7 @@ import { HeadingTemplate } from "../_components/heading-template";
 
 import { formatRelativeToNow } from "@/helpers/format-relative-to-now";
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
-import React, { useState } from "react";
+import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
 import colors from "tailwindcss/colors";
 import { GoBackButton } from "../_components/go-back-button";
 import { cn } from "@/lib/cn";
@@ -24,6 +24,19 @@ import { ListProps } from "@/stories/repo/repo-store.types";
 import { useColorScheme } from "nativewind";
 import { UpdatingList } from "./_components/updating-list";
 import { AskByDestroyList } from "./_components/ask-by-destroy-list";
+import {
+  AdEventType,
+  InterstitialAd,
+  TestIds,
+} from "react-native-google-mobile-ads";
+
+const adUnitId = __DEV__
+  ? TestIds.INTERSTITIAL
+  : "ca-app-pub-4712672148809066~2178403059";
+
+const interstitial = InterstitialAd.createForAdRequest(adUnitId, {
+  keywords: ["fashion", "clothing"],
+});
 
 export default function Page() {
   const navigation = useNavigation();
@@ -36,6 +49,7 @@ export default function Page() {
   const currentList = lists.find((list) => list.id === id);
 
   const [updating, setUpdating] = useState<boolean>(false);
+  const [interstitialLoaded, setInterstitialLoaded] = useState(false);
   const [currentUpdatedList, setCurrentUpdatedList] = useState<ListProps>(
     () => {
       return currentList?.id ? currentList : ({} as ListProps);
@@ -43,6 +57,27 @@ export default function Page() {
   );
 
   const handleGoBack = () => navigation.goBack();
+
+  const firstRender = useRef(true);
+
+  useLayoutEffect(() => {
+    const unsubscribe = interstitial.addAdEventListener(
+      AdEventType.LOADED,
+      () => {
+        setInterstitialLoaded(true);
+      }
+    );
+
+    interstitial.load();
+
+    return unsubscribe;
+  }, []);
+
+  useEffect(() => {
+    if (interstitialLoaded && firstRender.current) {
+      interstitial.show();
+    }
+  }, [interstitialLoaded]);
 
   if (!currentList) {
     return handleGoBack();
@@ -135,38 +170,41 @@ export default function Page() {
             )}
           </View>
         }
+        pageContent={
+          <>
+            {!updating && (
+              <>
+                <ScrollView>
+                  <View className="px-2 pt-0 pb-6 gap-2">
+                    {currentItems.length >= 1 ? (
+                      <>
+                        {currentItems.map((item) => (
+                          <View key={item.id}>
+                            <Item item={item} />
+                          </View>
+                        ))}
+                      </>
+                    ) : (
+                      <View>
+                        <ListsEmpty listId={currentList.id} />
+                      </View>
+                    )}
+                  </View>
+                </ScrollView>
+              </>
+            )}
+
+            {updating && (
+              <UpdatingList
+                currentUpdatedList={currentUpdatedList}
+                setCurrentUpdatedList={setCurrentUpdatedList}
+                enableSaveButton={enableSaveButton}
+                handleConfirmUpdate={handleConfirmUpdate}
+              />
+            )}
+          </>
+        }
       />
-
-      {!updating && (
-        <>
-          <ScrollView>
-            <View className="px-2 py-5 pb-6 gap-2">
-              {currentItems.length >= 1 ? (
-                <>
-                  {currentItems.map((item) => (
-                    <View key={item.id}>
-                      <Item item={item} />
-                    </View>
-                  ))}
-                </>
-              ) : (
-                <View>
-                  <ListsEmpty listId={currentList.id} />
-                </View>
-              )}
-            </View>
-          </ScrollView>
-        </>
-      )}
-
-      {updating && (
-        <UpdatingList
-          currentUpdatedList={currentUpdatedList}
-          setCurrentUpdatedList={setCurrentUpdatedList}
-          enableSaveButton={enableSaveButton}
-          handleConfirmUpdate={handleConfirmUpdate}
-        />
-      )}
     </KeyboardAvoidingView>
   );
 }

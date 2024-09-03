@@ -49,33 +49,34 @@ export default function Page() {
         footerChildren={
           <LinkButton pathname="/lists/all" title="Ver minhas listas" />
         }
+        pageContent={
+          <View className="flex-1 h-full justify-between p-5">
+            <View className="space-y-3">
+              <Text className="dark:text-slate-50 font-bold text-base">
+                Dê um nome a lista:
+              </Text>
+              <TextInput
+                placeholder="Produtos de limpeza do mês"
+                onChange={(e) => {
+                  const { text } = e.nativeEvent;
+                  setNewList(text);
+                }}
+                value={newList}
+                className={cn(
+                  colorScheme === "light" && "bg-slate-300",
+                  "p-3 px-4 dark:bg-slate-700 border-solid rounded-lg dark:text-slate-200 focus:border focus:border-cyan-400"
+                )}
+              />
+            </View>
+
+            <FooterButton
+              available={!!newList}
+              title="Criar lista"
+              onPress={handleCreateNewList}
+            />
+          </View>
+        }
       />
-
-      <View className="flex-1 h-full justify-between p-5">
-        <View className="space-y-3">
-          <Text className="dark:text-slate-50 font-bold text-base">
-            Dê um nome a lista:
-          </Text>
-          <TextInput
-            placeholder="Produtos de limpeza do mês"
-            onChange={(e) => {
-              const { text } = e.nativeEvent;
-              setNewList(text);
-            }}
-            value={newList}
-            className={cn(
-              colorScheme === "light" && "bg-slate-300",
-              "p-3 px-4 dark:bg-slate-700 border-solid rounded-lg dark:text-slate-200 focus:border focus:border-cyan-400"
-            )}
-          />
-        </View>
-
-        <FooterButton
-          available={!!newList}
-          title="Criar lista"
-          onPress={handleCreateNewList}
-        />
-      </View>
     </View>
   );
 }

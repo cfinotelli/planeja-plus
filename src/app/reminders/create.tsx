@@ -112,74 +112,75 @@ export default function Page() {
         footerChildren={
           <LinkButton pathname="/reminders/all" title="Ver meus lembretes" />
         }
-      />
+        pageContent={
+          <View className="flex-1 h-full justify-between p-5">
+            <View className="space-y-3">
+              <Text className="dark:text-slate-50 font-bold text-base">
+                Dê um nome ao lembrete:
+              </Text>
 
-      <View className="flex-1 h-full justify-between p-5">
-        <View className="space-y-3">
-          <Text className="dark:text-slate-50 font-bold text-base">
-            Dê um nome ao lembrete:
-          </Text>
+              <TextInput
+                placeholder="Beber água"
+                onChange={(e) => {
+                  const { text } = e.nativeEvent;
+                  setReminderLabel((prevState) => {
+                    return {
+                      ...prevState,
+                      label: text,
+                    };
+                  });
+                }}
+                value={reminderLabel?.label}
+                className={cn(
+                  colorScheme === "light" && "bg-slate-300",
+                  "p-3 px-4 dark:bg-slate-700 border-solid rounded-lg dark:text-slate-200  focus:border focus:border-cyan-400"
+                )}
+              />
 
-          <TextInput
-            placeholder="Beber água"
-            onChange={(e) => {
-              const { text } = e.nativeEvent;
-              setReminderLabel((prevState) => {
-                return {
-                  ...prevState,
-                  label: text,
-                };
-              });
-            }}
-            value={reminderLabel?.label}
-            className={cn(
-              colorScheme === "light" && "bg-slate-300",
-              "p-3 px-4 dark:bg-slate-700 border-solid rounded-lg dark:text-slate-200  focus:border focus:border-cyan-400"
-            )}
-          />
+              <DateSelectModeTabs handleShowMode={handleToggleMode} />
 
-          <DateSelectModeTabs handleShowMode={handleToggleMode} />
-
-          {currentDateSelected && (
-            <Text
-              className={cn(
-                colorScheme === "light" && "bg-slate-300",
-                "dark:bg-slate-600 p-2 rounded-md dark:text-slate-200"
+              {currentDateSelected && (
+                <Text
+                  className={cn(
+                    colorScheme === "light" && "bg-slate-300",
+                    "dark:bg-slate-600 p-2 rounded-md dark:text-slate-200"
+                  )}
+                >
+                  {currentDateSelected}
+                </Text>
               )}
-            >
-              {currentDateSelected}
-            </Text>
-          )}
 
-          {currentHourSelected && (
-            <Text
-              className={cn(
-                colorScheme === "light" && "bg-slate-300",
-                "dark:bg-slate-600 p-2 rounded-md dark:text-slate-200"
+              {currentHourSelected && (
+                <Text
+                  className={cn(
+                    colorScheme === "light" && "bg-slate-300",
+                    "dark:bg-slate-600 p-2 rounded-md dark:text-slate-200"
+                  )}
+                >
+                  {currentHourSelected}
+                </Text>
               )}
-            >
-              {currentHourSelected}
-            </Text>
-          )}
 
-          {pickerLabels.show && (
-            <DateTimePicker
-              is24Hour
-              locale="pt-BR"
-              mode={pickerLabels.mode}
-              minimumDate={new Date()}
-              onChange={handleOnChangePicker}
-              value={pickerLabels.date}
+              {pickerLabels.show && (
+                <DateTimePicker
+                  is24Hour
+                  locale="pt-BR"
+                  mode={pickerLabels.mode}
+                  minimumDate={new Date()}
+                  onChange={handleOnChangePicker}
+                  value={pickerLabels.date}
+                />
+              )}
+            </View>
+
+            <FooterButton
+              available={!dontHaveReminder}
+              title="Criar lembrete"
+              onPress={handleCreateReminder}
             />
-          )}
-        </View>
-
-        <FooterButton
-          available={!dontHaveReminder}
-          title="Criar lembrete"
-          onPress={handleCreateReminder}
-        />
-      </View>
+          </View>
+        }
+      />
     </View>
   );
 }

@@ -66,40 +66,41 @@ export default function Page() {
             title={`Ver lista: ${currentList?.title}`}
           />
         }
-      />
+        pageContent={
+          <View className="flex-1 h-full justify-between p-5">
+            <View className="flex-1 justify-start gap-2">
+              <View className="space-y-3">
+                <Text className="dark:text-slate-50 font-bold text-base">
+                  Dê um nome ao seu novo item:
+                </Text>
+                <TextInput
+                  placeholder="Produtos de limpeza do mês"
+                  onChange={(e) => {
+                    const { text } = e.nativeEvent;
+                    setNewItem((prev) => {
+                      return {
+                        ...prev,
+                        name: text,
+                      };
+                    });
+                  }}
+                  value={newItem.name}
+                  className={cn(
+                    colorScheme === "light" && "bg-slate-300",
+                    "p-3 px-4 dark:bg-slate-700 border-solid rounded-lg dark:text-slate-200 focus:border focus:border-cyan-400"
+                  )}
+                />
+              </View>
+            </View>
 
-      <View className="flex-1 h-full justify-between p-5">
-        <View className="flex-1 justify-start gap-2">
-          <View className="space-y-3">
-            <Text className="dark:text-slate-50 font-bold text-base">
-              Dê um nome ao seu novo item:
-            </Text>
-            <TextInput
-              placeholder="Produtos de limpeza do mês"
-              onChange={(e) => {
-                const { text } = e.nativeEvent;
-                setNewItem((prev) => {
-                  return {
-                    ...prev,
-                    name: text,
-                  };
-                });
-              }}
-              value={newItem.name}
-              className={cn(
-                colorScheme === "light" && "bg-slate-300",
-                "p-3 px-4 dark:bg-slate-700 border-solid rounded-lg dark:text-slate-200 focus:border focus:border-cyan-400"
-              )}
+            <FooterButton
+              available={createItemEnable}
+              title="Criar item"
+              onPress={handleCreateItem}
             />
           </View>
-        </View>
-
-        <FooterButton
-          available={createItemEnable}
-          title="Criar item"
-          onPress={handleCreateItem}
-        />
-      </View>
+        }
+      />
     </View>
   );
 }

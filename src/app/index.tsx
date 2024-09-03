@@ -30,13 +30,14 @@ export default function Page() {
           </>
         }
         footerChildren={<NavigationTabs />}
+        pageContent={
+          <ScrollView className="p-5 pt-0">
+            <HomeLists />
+
+            <HomeTodayReminders />
+          </ScrollView>
+        }
       />
-
-      <ScrollView className="p-5">
-        <HomeLists />
-
-        <HomeTodayReminders />
-      </ScrollView>
     </View>
   );
 }
