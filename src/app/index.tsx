@@ -4,9 +4,9 @@ import { HeadingTemplate } from "./_components/heading-template";
 import { Logo } from "./_components/logo";
 import { NavigationTabs } from "./_components/navigation-tabs";
 import { Notifications } from "@/lib/notifications";
-import { ToggleThemeSwitch } from "./_components/toggle-theme-switch";
 import { HomeTodayReminders } from "./_components/home-today-reminders";
 import { HomeLists } from "./_components/home-lists";
+import { HomeDrawerMenu } from "./_components/home-drawer-menu";
 
 Notifications.setNotificationHandler({
   handleNotification: async () => ({
@@ -26,7 +26,7 @@ export default function Page() {
               <Logo />
             </View>
 
-            <ToggleThemeSwitch />
+            <HomeDrawerMenu />
           </>
         }
         footerChildren={<NavigationTabs />}
