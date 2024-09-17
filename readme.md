@@ -9,7 +9,13 @@
 
 ## Sobre o Projeto
 
-O **Planeja Plus** nasceu da necessidade de resolver um problema cotidiano observado por minha esposa. A dificuldade em encontrar um aplicativo de gerenciamento de listas que fosse simples e direto motivou a criação desta solução. A maioria dos aplicativos disponíveis continha excesso de informações e complexidade, comprometendo a experiência do usuário. A ideia do Planeja Plus é ser uma ferramenta objetiva e fácil de usar, e hoje é o aplicativo que utilizamos diariamente para organizar nossas compras e tarefas.
+O **Planeja Plus** nasceu da necessidade de resolver um problema cotidiano observado por minha esposa.
+
+A dificuldade em encontrar um aplicativo de gerenciamento de listas que fosse simples e direto motivou a criação desta solução.
+
+Na maioria dos aplicativos disponíveis continha excesso de informações e complexidade, comprometendo a experiência do usuário.
+
+Nossa ideia de criação do Planeja Plus é ter uma ferramenta objetiva e fácil de usar, e hoje é o aplicativo que utilizamos diariamente para organizar nossas compras e tarefas.
 
 ---
 
