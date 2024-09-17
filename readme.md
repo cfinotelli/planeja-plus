@@ -4,7 +4,7 @@
   ### Uma aplicação mobile desenvolvida para simplificar suas listas de compras e tarefas!
   #### Crie lembretes e mantenha-se organizado com facilidade e objetividade.
 </div>
-
+  
 ---
 
 ## Sobre o Projeto
@@ -16,6 +16,11 @@ A dificuldade em encontrar um aplicativo de gerenciamento de listas que fosse si
 Na maioria dos aplicativos disponíveis continha excesso de informações e complexidade, comprometendo a experiência do usuário.
 
 Nossa ideia de criação do Planeja Plus é ter uma ferramenta objetiva e fácil de usar, e hoje é o aplicativo que utilizamos diariamente para organizar nossas compras e tarefas.
+
+<div align="center">
+  <img src="/home-screen-pplus.jpeg" alt="Home screen planeja plus" width="200">
+</div>
+
 
 ---
 
