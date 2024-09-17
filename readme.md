@@ -75,3 +75,29 @@ Para que a funcionalidade de lembretes funcione corretamente no Android, é nece
 ```xml
 <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM"/>
 <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
+
+```
+
+---
+
+## Como executar o projeto
+
+```bash
+# Clonar o repositório
+git clone https://github.com/cfinotelli/planeja-plus.git
+
+# Entrar no diretório
+cd planeja-plus
+
+# Baixar as dependências
+npm install | yarn
+
+# Executar o servidor
+npx expo start
+
+# Executar no emulador ou No celular
+Pressione "a" para Android.
+Pressione "i" para IOS.
+Para testar no celular será necessário ter o aplicativo Expo Go instalado no dispositivo e ler o QRCODE.
+
+```
