@@ -13,6 +13,23 @@ O **Planeja Plus** nasceu da necessidade de resolver um problema cotidiano obser
 
 ---
 
+## Tecnologias
+
+- [React-Native]()
+- [Expo]()
+- [Typescript]()
+- [Expo Router]()
+- [Date Fns]()
+- [Nativewind]()
+- [Zustand]()
+- [Tailwindcss]()
+- [Expo]()
+- [Async Storage]()
+- [Expo Notifications]()
+- [Draggable Flatlist]()
+
+---
+
 ## Experimente o Aplicativo
 
 Para experimentar o Planeja Plus, siga os passos abaixo:
