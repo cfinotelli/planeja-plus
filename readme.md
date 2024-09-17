@@ -1,39 +1,60 @@
-
 <div align="center">
- <img src="/src/assets/images/logo.png">
+  <img src="/src/assets/images/logo.png" alt="Logo do Planeja Plus" width="200">
 
-  <h3>Uma aplicação mobile focada em revolver seus problemas com listas simples para compras ou tarefas!</h3>
-  <h4>Crie lembretes e fique sempre atento aos seus compromissos!</h3>
+  ### Uma aplicação mobile desenvolvida para simplificar suas listas de compras e tarefas!
+  #### Crie lembretes e mantenha-se organizado com facilidade e objetividade.
 </div>
 
-# Sobre
+---
 
-O Planeja Plus foi criado com o intuito de resolver um problema vivenciado pela minha esposa, aonde decidi cria-lo para ser simples e ter uma usabilidade clara e direto ao ponto, todos os mesês minha esposa usou aplicativos para gerenciar suas listas de compras e as opções que ela tinha sempre tinham muita informação em tela, faltava simplicidade e objetividade, com isso o planeja plus foi a ideia que facilitou e hoje é o app que nós dois utilizamos!
+## Sobre o Projeto
 
-##
+O **Planeja Plus** nasceu da necessidade de resolver um problema cotidiano observado por minha esposa. A dificuldade em encontrar um aplicativo de gerenciamento de listas que fosse simples e direto motivou a criação desta solução. A maioria dos aplicativos disponíveis continha excesso de informações e complexidade, comprometendo a experiência do usuário. A ideia do Planeja Plus é ser uma ferramenta objetiva e fácil de usar, e hoje é o aplicativo que utilizamos diariamente para organizar nossas compras e tarefas.
 
-# Experimente o aplicativo
+---
 
-Para experimentar o aplicativo, faça o download do arquivo apk, envie o arquivo para o seu dispositivo android e busque pelo mesmo no navegador de arquivos, após isto faça a instalação pressionando o arquivo e desfrute!
+## Experimente o Aplicativo
 
-<a href="/build.apk" target="_blank" download="build.apk">Download</a>
+Para experimentar o Planeja Plus, siga os passos abaixo:
 
-##
+1. **Baixe o arquivo APK** clicando no link abaixo.
+2. **Transfira o APK** para o seu dispositivo Android.
+3. **Localize o arquivo** no gerenciador de arquivos do seu dispositivo.
+4. **Instale o aplicativo** clicando no arquivo baixado.
 
-# Regras de Negocio
+[Baixar Planeja Plus](/build.apk)
 
+---
 
- <img src="pplus-regras.PNG">
+## Regras de Negócio
 
-##
+### Tela Inicial
+- Exibe as listas e lembretes do usuário para o dia atual.
 
-Para que a funcionalidade de lembretes, será necessário adicionar as configurações abaixo para o funcionamento no `android`, sem outras considerações para funcionamento para `ios`.
+### Tela de Listas
+- Permite ao usuário visualizar todas as suas listas e criar novas listas.
 
-Será necessario configurar os arquivos no diretorio android para que as funcionalidades do aplicativo sejam executadas corretamente.
+### Tela de Lista
+- O usuário pode adicionar itens à lista, bem como atualizar ou excluir uma lista existente.
 
-path `android/app/src/main/AndroidManifest.xml`
+### Item da Lista
+- É possível alterar o nome do item, removê-lo ou marcá-lo como concluído usando um checkbox.
 
-```
-  <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM"/>
-  <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
-```
+### Tela de Lembretes
+- O usuário pode visualizar lembretes ativos e concluídos, além de criar, alterar ou excluir um lembrete.
+
+<div align="center">
+  <img src="pplus-regras.PNG" alt="Regras de negócio do Planeja Plus">
+</div>
+
+---
+
+## Configurações Necessárias para Lembretes no Android
+
+Para que a funcionalidade de lembretes funcione corretamente no Android, é necessário adicionar as seguintes permissões ao arquivo `AndroidManifest.xml`:
+
+**Caminho:** `android/app/src/main/AndroidManifest.xml`
+
+```xml
+<uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM"/>
+<uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
