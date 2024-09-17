@@ -80,7 +80,7 @@ Para que a funcionalidade de lembretes funcione corretamente no Android, é nece
 
 ---
 
-## Como executar o projeto
+## Como executar o projeto localmente
 
 ```bash
 # Clonar o repositório
