@@ -12,6 +12,13 @@ O Planeja Plus foi criado com o intuito de resolver um problema vivenciado pela 
 
 ##
 
+# Regras de Negocio
+
+
+ <img src="pplus-regras.PNG">
+
+##
+
 Para que a funcionalidade de lembretes, será necessário adicionar as configurações abaixo para o funcionamento no `android`, sem outras considerações para funcionamento para `ios`.
 
 Será necessario configurar os arquivos no diretorio android para que as funcionalidades do aplicativo sejam executadas corretamente.
