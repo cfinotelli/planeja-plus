@@ -12,6 +12,14 @@ O Planeja Plus foi criado com o intuito de resolver um problema vivenciado pela 
 
 ##
 
+# Experimente o aplicativo
+
+Para experimentar o aplicativo, faça o download do arquivo apk, envie o arquivo para o seu dispositivo android e busque pelo mesmo no navegador de arquivos, após isto faça a instalação pressionando o arquivo e desfrute!
+
+<a href="build.apk" target="_blank" download="build.apk">Download</a>
+
+##
+
 # Regras de Negocio
 
 
