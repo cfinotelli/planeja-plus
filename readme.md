@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="/src/assets/images/logo.png" alt="Logo do Planeja Plus" width="200">
+  <img src="readmeAssets/logo.png" alt="Logo do Planeja Plus" width="200">
 
   ### Uma aplicação mobile desenvolvida para simplificar suas listas de compras e tarefas!
   #### Crie lembretes e mantenha-se organizado com facilidade e objetividade.
@@ -18,7 +18,7 @@ Na maioria dos aplicativos disponíveis continha excesso de informações e comp
 Nossa ideia de criação do Planeja Plus é ter uma ferramenta objetiva e fácil de usar, e hoje é o aplicativo que utilizamos diariamente para organizar nossas compras e tarefas.
 
 <div align="center">
-  <img src="/home-screen-pplus.jpeg" alt="Home screen planeja plus" width="200">
+  <img src="readmeAssets/home-screen-pplus.jpeg" alt="Home screen planeja plus" width="200">
 </div>
 
 
@@ -54,7 +54,7 @@ Para experimentar o Planeja Plus, siga os passos abaixo:
 
 ---
 
-## Regras de Negócio
+## Fluxo da Aplicação
 
 ### Tela Inicial
 - Exibe as listas e lembretes do usuário para o dia atual.
@@ -72,8 +72,34 @@ Para experimentar o Planeja Plus, siga os passos abaixo:
 - O usuário pode visualizar lembretes ativos e concluídos, além de criar, alterar ou excluir um lembrete.
 
 <div align="center">
-  <img src="pplus-regras.PNG" alt="Regras de negócio do Planeja Plus">
+  <img src="readmeAssets/fluxo.png" alt="Fluxo da Aplicação Planeja Plus">
 </div>
+
+---
+
+## Estrutura de dados
+
+### Lista
+  - A lista deve contar um campo identificador (id) do tipo UUID (Primary Key).
+  - Um título (title) do tipo string.
+  - Um campo de data de criação (createdAt) do tipo string.
+
+### Item da Lista
+  - Um identificador (id) do tipo UUID (Primary Key).
+  - Um nome (name) do tipo string.
+  - Um identificador da lista (listId) do tipo UUID (ForeignKey).
+  - Um campo de data de criação (createdAt) do tipo string.
+  - Um campo de status de conclusão (isChecked) do tipo boolean.
+
+### Lembrete
+  - Um identificador (id) do tipo UUID (Primary Key).
+  - Um rótulo (label) do tipo string.
+  - Um campo de data e hora de lembrete (reminderAt) do tipo Date.
+
+<div align="center">
+  <img src="readmeAssets/estrutura_de_dados.png" alt="Estrutura de dados do Planeja Plus">
+</div>
+
 
 ---
 
@@ -83,11 +109,16 @@ Para que a funcionalidade de lembretes funcione corretamente no Android, é nece
 
 **Caminho:** `android/app/src/main/AndroidManifest.xml`
 
+
 ```xml
 <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM"/>
 <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
 
 ```
+
+## Configurações Necessárias para Lembretes no IOS
+
+Sem considerações específicas para o IOS.
 
 ---
 
