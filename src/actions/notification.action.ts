@@ -1,20 +1,23 @@
-import { Notifications } from "@/lib/notifications";
+import { NotificationModule } from "./notification/notification-module";
 
-export async function ReminderNotification({
-  label,
-  reminderAt,
-}: {
-  label: string;
-  reminderAt: Date;
-}) {
-  await Notifications.requestPermissionsAsync();
+export async function reminderNotification(
+  {
+    label,
+    reminderAt,
+  }: {
+    label: string;
+    reminderAt: Date;
+  },
+  notificationModule: NotificationModule
+) {
+  await notificationModule.requestPermissionsAsync();
 
-  const { status: hasStatus } = await Notifications.getPermissionsAsync();
+  const { status: hasStatus } = await notificationModule.getPermissionsAsync();
 
   let finalStatus = hasStatus;
 
   if (hasStatus !== "granted") {
-    const { status } = await Notifications.requestPermissionsAsync();
+    const { status } = await notificationModule.requestPermissionsAsync();
     finalStatus = status;
   }
 
@@ -23,16 +26,5 @@ export async function ReminderNotification({
     return;
   }
 
-  await Notifications.scheduleNotificationAsync({
-    identifier: "Default Reminder",
-
-    content: {
-      title: "Planeja Plus - Lembrete ✔",
-      body: label,
-      vibrate: [0, 250, 250, 250],
-    },
-    trigger: {
-      date: reminderAt,
-    },
-  });
+  await notificationModule.scheduleNotificationAsync({ label, reminderAt });
 }
