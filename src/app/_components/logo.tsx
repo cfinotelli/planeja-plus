@@ -8,6 +8,7 @@ export const Logo = () => {
       source={LogoImage}
       alt="Logo do aplicativo Planeja Plus"
       className="w-[120px] h-[50px]"
+      resizeMode="contain"
     />
   );
 };

@@ -1,9 +1,9 @@
 import { useFonts } from "expo-font";
 import { Slot } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
-import { useEffect } from "react";
-import { SafeAreaView } from "react-native";
 import { StatusBar } from "expo-status-bar";
+import { useEffect } from "react";
+import { Platform, View } from "react-native";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 
 import "react-native-reanimated";
@@ -26,11 +26,18 @@ export default function RootLayout() {
   }
 
   return (
-    <SafeAreaView className="flex-1 dark:bg-slate-800">
-      <StatusBar style="auto" translucent hideTransitionAnimation="fade" />
+    <View
+      className={`flex-1 dark:bg-slate-800 ${Platform.OS === "ios" ? "!pt-0" : ""}`}
+    >
+      <StatusBar
+        style="auto"
+        translucent
+        hideTransitionAnimation="fade"
+        backgroundColor="transparent"
+      />
       <GestureHandlerRootView className="flex-1 items-center justify-center">
         <Slot />
       </GestureHandlerRootView>
-    </SafeAreaView>
+    </View>
   );
 }

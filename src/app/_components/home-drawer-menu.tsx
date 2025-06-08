@@ -1,10 +1,10 @@
-import { useState } from "react";
-import { ToggleThemeSwitch } from "./toggle-theme-switch";
-import { Feather } from "@expo/vector-icons";
-import colors from "tailwindcss/colors";
-import { Modal, Text, TouchableOpacity, View } from "react-native";
-import { useColorScheme } from "nativewind";
 import { cn } from "@/lib/cn";
+import { Feather } from "@expo/vector-icons";
+import { useColorScheme } from "nativewind";
+import React, { useState } from "react";
+import { Modal, Text, TouchableOpacity, View } from "react-native";
+import colors from "tailwindcss/colors";
+import { ToggleThemeSwitch } from "./toggle-theme-switch";
 
 export const HomeDrawerMenu = () => {
   const { colorScheme } = useColorScheme();
@@ -26,8 +26,8 @@ export const HomeDrawerMenu = () => {
       {isOpen && (
         <Modal collapsable={true} visible={isOpen} transparent>
           <View className="bg-slate-900/80 bg-opacity-50 flex-1 justify-end items-end">
-            <View className="h-full bg-white dark:bg-slate-800 w-3/4 p-5 pt-8 relative items-end space-y-2">
-              <View className="flex-row justify-between items-center w-full mb-5">
+            <View className="h-full bg-white dark:bg-slate-800 w-full p-5 pt-8 relative items-end space-y-2">
+              <View className="flex-row justify-between items-center w-full my-5 ">
                 <Text
                   className={cn(
                     colorScheme === "light" && "text-slate-900",
