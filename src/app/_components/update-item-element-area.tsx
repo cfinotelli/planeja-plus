@@ -39,7 +39,7 @@ export const UpdateItemElementArea = ({
       </TouchableOpacity>
 
       <TextInput
-        className="bg-slate-400 px-2 flex-1 rounded-md text-slate-950 mr-2 h-full"
+        className="bg-slate-400 px-2 py-1 flex-1 rounded-md text-slate-950 mr-2 h-full"
         value={itemUpdated.name}
         onChange={(e) => {
           const value = e.nativeEvent.text;
@@ -53,7 +53,7 @@ export const UpdateItemElementArea = ({
         }}
       />
 
-      <TouchableOpacity className="ml-5 mr-1" onPress={handleConfirmUpdate}>
+      <TouchableOpacity className="ml-3 mr-1 bg-slate-400 p-1 rounded-md" onPress={handleConfirmUpdate}>
         <FontAwesome5 name="check" size={14} color={colors.green[400]} />
       </TouchableOpacity>
 
