@@ -6,7 +6,14 @@ import DateTimePicker, {
 import { format } from "date-fns";
 import { useNavigation } from "expo-router";
 import React, { useState } from "react";
-import { Text, TextInput, View } from "react-native";
+import {
+  Button,
+  Modal,
+  Platform,
+  Text,
+  TextInput,
+  View,
+} from "react-native";
 import { DateSelectModeTabs } from "../_components/date-select-mode-tabs";
 import { FooterButton } from "../_components/footer-button";
 import { GoBackButton } from "../_components/go-back-button";
@@ -111,7 +118,7 @@ export default function Page() {
         }
       />
 
-      <View className="flex-1 h-full justify-between p-5">
+      <View className="flex-1 h-full justify-between p-5 pb-7">
         <View className="space-y-3">
           <Text className="font-bold text-base">
             Dê um nome ao lembrete:
@@ -135,23 +142,18 @@ export default function Page() {
           <DateSelectModeTabs handleShowMode={handleToggleMode} />
 
           {currentDateSelected && (
-            <Text
-              className="bg-slate-300 p-2 rounded-md"
-            >
+            <Text className="bg-slate-300 p-2 rounded-md">
               {currentDateSelected}
             </Text>
           )}
 
           {currentHourSelected && (
-            <Text
-              className=
-              "bg-slate-300 p-2 rounded-md"
-            >
+            <Text className="bg-slate-300 p-2 rounded-md">
               {currentHourSelected}
             </Text>
           )}
 
-          {pickerLabels.show && (
+          {pickerLabels.show && Platform.OS === "android" && (
             <DateTimePicker
               is24Hour
               locale="pt-BR"
@@ -159,7 +161,28 @@ export default function Page() {
               minimumDate={new Date()}
               onChange={handleOnChangePicker}
               value={pickerLabels.date}
+              style={{ alignSelf: "center" }}
             />
+          )}
+
+          {Platform.OS === "ios" && (
+            <Modal transparent={true} visible={pickerLabels.show} animationType="slide">
+              <View className="flex-1 justify-end bg-black/30">
+                <View className="bg-white p-5 rounded-t-2xl space-y-3">
+                  <DateTimePicker
+                    is24Hour
+                    locale="pt-BR"
+                    mode={pickerLabels.mode}
+                    minimumDate={new Date()}
+                    onChange={handleOnChangePicker}
+                    value={pickerLabels.date}
+                    display="spinner"
+                    style={{ alignSelf: "center" }}
+                  />
+                  <Button title="Confirmar" onPress={() => setPikerLabels(prev => ({ ...prev, show: false }))} />
+                </View>
+              </View>
+            </Modal>
           )}
         </View>
 

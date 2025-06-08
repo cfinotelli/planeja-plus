@@ -17,7 +17,7 @@ export const FooterButton = ({
     activeOpacity={0.7}
     className={cn(
       available ? "bg-cyan-600" : "bg-slate-700",
-      "items-center justify-center w-full p-2 rounded-md flex-row"
+      "items-center justify-center w-full p-[6px] rounded-md flex-row"
     )}
   >
     <Text className="uppercase text-center text-slate-100 font-semibold text-sm mr-1">

@@ -48,7 +48,7 @@ export default function Page() {
         }
       />
 
-      <View className="flex-1 h-full justify-between p-5">
+      <View className="flex-1 h-full justify-between p-5 pb-7">
         <View className="space-y-3">
           <Text className="font-bold text-base">
             Dê um nome a lista:

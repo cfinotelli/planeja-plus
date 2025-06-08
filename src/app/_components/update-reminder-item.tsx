@@ -4,8 +4,8 @@ import DateTimePicker, {
   DateTimePickerEvent,
 } from "@react-native-community/datetimepicker";
 import { format } from "date-fns";
-import { useState } from "react";
-import { Modal, Text, TextInput, TouchableOpacity, View } from "react-native";
+import React, { useState } from "react";
+import { Button, Modal, Platform, Text, TextInput, TouchableOpacity, View } from "react-native";
 import { ConfirmationModal } from "./confirmation-modal";
 import { DateSelectModeTabs } from "./date-select-mode-tabs";
 import { FooterButton } from "./footer-button";
@@ -179,14 +179,39 @@ export const UpdateReminderItem = ({
       </View>
 
       {pickerLabels.show && (
-        <DateTimePicker
-          is24Hour
-          locale="pt-BR"
-          mode={pickerLabels.mode}
-          minimumDate={new Date()}
-          onChange={handleOnChangePicker}
-          value={new Date(currentReminder.reminderAt)}
-        />
+        <>
+          {pickerLabels.show && Platform.OS === "android" && (
+            <DateTimePicker
+              is24Hour
+              locale="pt-BR"
+              mode={pickerLabels.mode}
+              minimumDate={new Date()}
+              onChange={handleOnChangePicker}
+              value={pickerLabels.date}
+              style={{ alignSelf: "center" }}
+            />
+          )}
+
+          {Platform.OS === "ios" && (
+            <Modal transparent={true} visible={pickerLabels.show} animationType="slide">
+              <View className="flex-1 justify-end bg-black/30">
+                <View className="bg-white p-5 rounded-t-2xl space-y-3">
+                  <DateTimePicker
+                    is24Hour
+                    locale="pt-BR"
+                    mode={pickerLabels.mode}
+                    minimumDate={new Date()}
+                    onChange={handleOnChangePicker}
+                    value={pickerLabels.date}
+                    display="spinner"
+                    style={{ alignSelf: "center" }}
+                  />
+                  <Button title="Confirmar" onPress={() => setPikerLabels(prev => ({ ...prev, show: false }))} />
+                </View>
+              </View>
+            </Modal>
+          )}
+        </>
       )}
 
       <ConfirmationModal
