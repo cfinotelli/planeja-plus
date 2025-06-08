@@ -1,8 +1,9 @@
+import { ReminderProps } from "@/stories/repo/repo-store.types";
+import { isBefore } from "date-fns";
+import React from "react";
 import { Text, View } from "react-native";
 import { ReminderItem } from "../../reminder-item";
 import { RemindersEmpry } from "../../reminders-empty";
-import { isBefore } from "date-fns";
-import { ReminderProps } from "@/stories/repo/repo-store.types";
 
 export const AfterReminders = ({
   reminders,
@@ -15,7 +16,7 @@ export const AfterReminders = ({
 
   return (
     <>
-      <Text className="pt-3 pb-2 pl-5 text-bold text-xl dark:text-slate-50">
+      <Text className="pt-3 pb-2 pl-5 text-bold text-xl">
         Meus Lembretes
       </Text>
 

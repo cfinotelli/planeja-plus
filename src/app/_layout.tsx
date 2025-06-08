@@ -27,7 +27,7 @@ export default function RootLayout() {
 
   return (
     <View
-      className={`flex-1 dark:bg-slate-800 ${Platform.OS === "ios" ? "!pt-0" : ""}`}
+      className={`flex-1 bg-slate-200 ${Platform.OS === "ios" ? "!pt-0" : ""}`}
     >
       <StatusBar
         style="auto"

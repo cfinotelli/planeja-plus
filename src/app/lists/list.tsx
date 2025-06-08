@@ -11,24 +11,22 @@ import {
 import { HeadingTemplate } from "../_components/heading-template";
 
 import { formatRelativeToNow } from "@/helpers/format-relative-to-now";
+import { cn } from "@/lib/cn";
+import { useRepoStore } from "@/stories/repo/repo-store";
+import { ListProps } from "@/stories/repo/repo-store.types";
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 import React, { useState } from "react";
 import colors from "tailwindcss/colors";
-import { GoBackButton } from "../_components/go-back-button";
-import { cn } from "@/lib/cn";
-import { Item } from "../_components/item";
 import { CreateItemLink } from "../_components/create-item-link";
+import { GoBackButton } from "../_components/go-back-button";
+import { Item } from "../_components/item";
 import { ListsEmpty } from "../_components/lists-empty";
-import { useRepoStore } from "@/stories/repo/repo-store";
-import { ListProps } from "@/stories/repo/repo-store.types";
-import { useColorScheme } from "nativewind";
-import { UpdatingList } from "./_components/updating-list";
 import { AskByDestroyList } from "./_components/ask-by-destroy-list";
+import { UpdatingList } from "./_components/updating-list";
 
 export default function Page() {
   const navigation = useNavigation();
   const { id } = useLocalSearchParams<{ id: string }>();
-  const { colorScheme } = useColorScheme();
 
   const { items, lists, updateList } = useRepoStore((state) => state);
 
@@ -91,19 +89,16 @@ export default function Page() {
         }
         footerChildren={
           <View
-            className={cn(
-              colorScheme === "light" && "bg-slate-200",
-              "p-2 items-center justify-start dark:bg-slate-700 flex-1 rounded-md space-y-2"
-            )}
+            className="p-2 items-center justify-start bg-slate-200 flex-1 rounded-md space-y-2"
           >
-            <Text className="text-xs truncate font-bold text-start w-full items-center dark:text-slate-200">
+            <Text className="text-xs truncate font-bold text-start w-full items-center ">
               Lista:{" "}
               <Text className="font-normal italic items-center">
                 {currentList && currentList.title}
               </Text>
             </Text>
 
-            <Text className="text-xs truncate font-bold text-start w-full items-center dark:text-slate-200">
+            <Text className="text-xs truncate font-bold text-start w-full items-center ">
               Criada em:{" "}
               <Text className="font-normal italic items-center">
                 {formatRelativeToNow(currentList.createdAt)}
@@ -114,7 +109,7 @@ export default function Page() {
               className={cn(
                 currentItems.length >= 1 && "mb-3",
                 updating && "mb-3",
-                "text-xs truncate font-bold text-start w-full items-center dark:text-slate-200"
+                "text-xs truncate font-bold text-start w-full items-center "
               )}
             >
               Itens desta lista:{" "}

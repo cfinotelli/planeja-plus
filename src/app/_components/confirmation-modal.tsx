@@ -1,5 +1,3 @@
-import { cn } from "@/lib/cn";
-import { useColorScheme } from "nativewind";
 import { Modal, Text, TouchableOpacity, View } from "react-native";
 
 interface ConfirmationModalProps {
@@ -13,7 +11,6 @@ export const ConfirmationModal = ({
   onAccept,
   onCancel,
 }: ConfirmationModalProps) => {
-  const { colorScheme } = useColorScheme();
 
   return (
     <Modal
@@ -24,18 +21,16 @@ export const ConfirmationModal = ({
     >
       <View className="flex-1 justify-center items-center bg-slate-900/80 bg-opacity-50">
         <View
-          className={cn(
-            colorScheme === "light" && "bg-slate-100",
-            "w-80 dark:bg-slate-700 p-5 rounded-md shadow-lg"
-          )}
+          className="bg-slate-100 w-80 p-5 rounded-md shadow-lg"
+
         >
-          <Text className="text-lg mb-4 dark:text-slate-50">
+          <Text className="text-lg mb-4">
             Deseja mesmo fazer isso?
           </Text>
 
           <View className="flex-row justify-end space-x-2">
             <TouchableOpacity onPress={onCancel} className="p-2 rounded-md">
-              <Text className="dark:text-slate-200">Cancelar</Text>
+              <Text>Cancelar</Text>
             </TouchableOpacity>
 
             <TouchableOpacity

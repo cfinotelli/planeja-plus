@@ -1,16 +1,14 @@
-import { Modal, Text, TextInput, TouchableOpacity, View } from "react-native";
-import { DateSelectModeTabs } from "./date-select-mode-tabs";
-import { useState } from "react";
+import { useRepoStore } from "@/stories/repo/repo-store";
+import { ReminderProps } from "@/stories/repo/repo-store.types";
 import DateTimePicker, {
   DateTimePickerEvent,
 } from "@react-native-community/datetimepicker";
 import { format } from "date-fns";
-import { FooterButton } from "./footer-button";
+import { useState } from "react";
+import { Modal, Text, TextInput, TouchableOpacity, View } from "react-native";
 import { ConfirmationModal } from "./confirmation-modal";
-import { useRepoStore } from "@/stories/repo/repo-store";
-import { ReminderProps } from "@/stories/repo/repo-store.types";
-import { useColorScheme } from "nativewind";
-import { cn } from "@/lib/cn";
+import { DateSelectModeTabs } from "./date-select-mode-tabs";
+import { FooterButton } from "./footer-button";
 
 type UpdateReminderProps = ReminderProps;
 
@@ -25,7 +23,6 @@ export const UpdateReminderItem = ({
   onClose,
   reminder,
 }: UpdateReminderItemProps) => {
-  const { colorScheme } = useColorScheme();
   const { updateReminder, removeReminder } = useRepoStore((state) => state);
   const [currentReminder, setCurrentReminder] = useState<UpdateReminderProps>(
     () => {
@@ -107,18 +104,15 @@ export const UpdateReminderItem = ({
     >
       <View className="flex-1 justify-center items-center bg-slate-900/80 bg-opacity-50">
         <View
-          className={cn(
-            colorScheme === "light" && "bg-slate-100",
-            "w-11/12 dark:bg-slate-600 p-5 rounded-md shadow-lg"
-          )}
+          className="w-11/12 p-5 rounded-md shadow-lg bg-slate-100"
         >
-          <Text className="text-lg mb-4 dark:text-slate-50">
+          <Text className="text-lg mb-4">
             Alterando o lembrete:{" "}
             <Text className="font-bold">{reminder.label}</Text>
           </Text>
 
           <View className="space-y-3">
-            <Text className="dark:text-slate-50 font-semibold">
+            <Text className="font-semibold">
               Nome do lembrete:
             </Text>
             <TextInput
@@ -133,20 +127,14 @@ export const UpdateReminderItem = ({
                 });
               }}
               value={currentReminder?.label}
-              className={cn(
-                colorScheme === "light" && "bg-slate-300",
-                "p-3 px-4 dark:bg-slate-700 border-solid rounded-lg dark:text-slate-50 focus:border focus:border-cyan-400"
-              )}
+              className="bg-slate-300 p-3 px-4 border-solid rounded-lg focus:border focus:border-cyan-400"
             />
 
             <DateSelectModeTabs handleShowMode={handleToggleMode} />
 
             {currentDateSelected && (
               <Text
-                className={cn(
-                  colorScheme === "light" && "bg-slate-300",
-                  "dark:bg-slate-700 p-2 rounded-md dark:text-slate-200"
-                )}
+                className="bg-slate-300 p-2 rounded-md"
               >
                 {currentDateSelected}
               </Text>
@@ -154,10 +142,7 @@ export const UpdateReminderItem = ({
 
             {currentHourSelected && (
               <Text
-                className={cn(
-                  colorScheme === "light" && "bg-slate-300",
-                  "dark:bg-slate-700 p-2 rounded-md dark:text-slate-200"
-                )}
+                className="bg-slate-300 p-2 rounded-md"
               >
                 {currentHourSelected}
               </Text>
@@ -170,7 +155,7 @@ export const UpdateReminderItem = ({
                 onPress={onClose}
                 className="p-2 rounded-md items-center justify-center"
               >
-                <Text className="dark:text-slate-200">Cancelar</Text>
+                <Text>Cancelar</Text>
               </TouchableOpacity>
             </View>
 

@@ -1,9 +1,9 @@
+import { ListIcon } from "@/assets/icons";
 import { Text, View } from "react-native";
 import { CreateListLink } from "../_components/create-list-link";
-import { Lists } from "../_components/lists";
-import { HeadingTemplate } from "../_components/heading-template";
 import { GoBackButton } from "../_components/go-back-button";
-import { ListIcon } from "@/assets/icons";
+import { HeadingTemplate } from "../_components/heading-template";
+import { Lists } from "../_components/lists";
 
 export default function Page() {
   return (
@@ -15,7 +15,7 @@ export default function Page() {
 
             <View className="flex-row justify-center items-center space-x-2 p-1 rounded-md active:bg-slate-400">
               <ListIcon size={24} />
-              <Text className="font-bold text-sm capitalize text-slate-50">
+              <Text className="font-bold text-sm capitalize text-slate-700">
                 Listas
               </Text>
             </View>
