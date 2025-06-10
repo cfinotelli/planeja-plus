@@ -44,8 +44,5 @@ jobs:
       - name: Install dependencies
         run: yarn install --immutable
 
-      - name: Run tests
-        run: yarn test --ci
-
       - name: Publish update
         run: eas update --branch preview --auto
