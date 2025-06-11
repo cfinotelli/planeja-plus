@@ -3,5 +3,8 @@ module.exports = function (api) {
   return {
     presets: ["babel-preset-expo"],
     plugins: ["nativewind/babel"],
+    ignore: [
+      /node_modules\/react-native\/.*\.js/
+    ],
   };
 };
