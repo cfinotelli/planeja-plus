@@ -11,7 +11,7 @@ export const HeadingTemplate = ({
   footerChildren,
 }: HeadingTemplateProps) => {
   return (
-    <View className="flex-col space-y-5 bg-slate-900/90 p-5 pt-12">
+    <View className="flex-col space-y-5 bg-slate-300 p-5 pt-14">
       <View className="flex-row justify-between items-center">
         {headerChildren}
       </View>

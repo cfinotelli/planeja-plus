@@ -1,7 +1,7 @@
 import { ScrollView } from "react-native";
 
-import React from "react";
 import { useRepoStore } from "@/stories/repo/repo-store";
+import React from "react";
 import { AfterReminders } from "./_components/after-reminders";
 import { BeforeReminders } from "./_components/before-reminders";
 

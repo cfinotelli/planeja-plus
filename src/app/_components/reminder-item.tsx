@@ -1,16 +1,15 @@
+import { reminderNotification } from "@/actions/notification.action";
+import { NotificationModule } from "@/actions/notification/notification-module";
+import { ClockIcon } from "@/assets/icons";
+import { cn } from "@/lib/cn";
+import { ReminderProps } from "@/stories/repo/repo-store.types";
 import { FontAwesome } from "@expo/vector-icons";
 import { formatRelative, isBefore } from "date-fns";
 import { ptBR } from "date-fns/locale";
+import { useCallback, useEffect, useState } from "react";
 import { Animated, Text, TouchableOpacity, View } from "react-native";
 import colors from "tailwindcss/colors";
-import { useCallback, useEffect, useState } from "react";
-import { ClockIcon } from "@/assets/icons";
 import { UpdateReminderItem } from "./update-reminder-item";
-import { cn } from "@/lib/cn";
-import { reminderNotification } from "@/actions/notification.action";
-import { useColorScheme } from "nativewind";
-import { ReminderProps } from "@/stories/repo/repo-store.types";
-import { NotificationModule } from "@/actions/notification/notification-module";
 
 interface ReminderItemProps {
   reminder: ReminderProps;
@@ -19,7 +18,6 @@ interface ReminderItemProps {
 export const ReminderItem = ({ reminder }: ReminderItemProps) => {
   const notificationModule = new NotificationModule();
 
-  const { colorScheme } = useColorScheme();
   const [modalUpdateReminderVisible, setModalUpdateReminderVisible] =
     useState(false);
 
@@ -43,10 +41,7 @@ export const ReminderItem = ({ reminder }: ReminderItemProps) => {
 
   return (
     <Animated.View
-      className={cn(
-        colorScheme === "light" && "bg-slate-300",
-        "flex-row flex-1 items-center dark:bg-slate-700 rounded-md p-2 px-4"
-      )}
+      className="bg-slate-300 flex-row flex-1 items-center rounded-md p-2 px-4"
     >
       <View className="flex-1 flex-row items-center justify-between">
         <View className="flex-col flex-1 items-center justify-start space-y-2">
@@ -54,16 +49,10 @@ export const ReminderItem = ({ reminder }: ReminderItemProps) => {
             <Text
               className={cn(
                 memoBeforeReminder
-                  ? `${
-                      colorScheme === "light"
-                        ? "text-slate-700"
-                        : "dark:text-slate-300"
-                    }`
-                  : `${
-                      colorScheme === "light"
-                        ? "text-slate-900"
-                        : "dark:text-slate-300"
-                    }`,
+                  ? `${"text-slate-700"
+                  }`
+                  : `${"text-slate-900"
+                  }`,
                 "font-bold text-base text-left w-full"
               )}
             >
@@ -75,17 +64,7 @@ export const ReminderItem = ({ reminder }: ReminderItemProps) => {
             <Text
               className={cn(
                 memoBeforeReminder
-                  ? `${
-                      colorScheme === "light"
-                        ? "text-slate-700"
-                        : "dark:text-slate-300"
-                    }`
-                  : `${
-                      colorScheme === "light"
-                        ? "text-slate-900"
-                        : "dark:text-slate-300"
-                    }`,
-                "text-sm ml-1"
+                  ? `${"text-slate-700"}` : `${"text-slate-900"}`, "text-sm ml-1"
               )}
             >
               {formatRelative(reminder.reminderAt, new Date(), {

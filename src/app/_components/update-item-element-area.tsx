@@ -1,13 +1,11 @@
+import { useRepoStore } from "@/stories/repo/repo-store";
+import { ItemProps } from "@/stories/repo/repo-store.types";
 import EvilIcons from "@expo/vector-icons/EvilIcons";
 import FontAwesome5 from "@expo/vector-icons/FontAwesome5";
 import React, { useState } from "react";
 import { TextInput, TouchableOpacity, View } from "react-native";
 import colors from "tailwindcss/colors";
 import { ConfirmationModal } from "./confirmation-modal";
-import { useRepoStore } from "@/stories/repo/repo-store";
-import { ItemProps } from "@/stories/repo/repo-store.types";
-import { useColorScheme } from "nativewind";
-import { cn } from "@/lib/cn";
 
 export const UpdateItemElementArea = ({
   item,
@@ -16,7 +14,6 @@ export const UpdateItemElementArea = ({
   item: ItemProps;
   setUpdating: React.Dispatch<React.SetStateAction<boolean>>;
 }) => {
-  const { colorScheme } = useColorScheme();
   const { updateItem, removeItem } = useRepoStore((state) => state);
   const [itemUpdated, setItemUpdated] = useState<ItemProps>(item);
   const [isModalVisible, setModalVisible] = useState(false);
@@ -42,10 +39,7 @@ export const UpdateItemElementArea = ({
       </TouchableOpacity>
 
       <TextInput
-        className={cn(
-          colorScheme === "light" && "bg-slate-400",
-          "px-2 flex-1 rounded-md dark:bg-slate-300 text-slate-950 mr-2 h-full"
-        )}
+        className="bg-slate-400 px-2 py-1 flex-1 rounded-md text-slate-950 mr-2 h-full"
         value={itemUpdated.name}
         onChange={(e) => {
           const value = e.nativeEvent.text;
@@ -59,7 +53,7 @@ export const UpdateItemElementArea = ({
         }}
       />
 
-      <TouchableOpacity className="ml-5 mr-1" onPress={handleConfirmUpdate}>
+      <TouchableOpacity className="ml-3 mr-1 bg-slate-400 p-1 rounded-md" onPress={handleConfirmUpdate}>
         <FontAwesome5 name="check" size={14} color={colors.green[400]} />
       </TouchableOpacity>
 

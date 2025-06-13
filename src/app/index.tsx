@@ -1,12 +1,11 @@
+import { Notifications } from "@/lib/notifications";
 import React from "react";
 import { ScrollView, View } from "react-native";
 import { HeadingTemplate } from "./_components/heading-template";
+import { HomeLists } from "./_components/home-lists";
+import { HomeTodayReminders } from "./_components/home-today-reminders";
 import { Logo } from "./_components/logo";
 import { NavigationTabs } from "./_components/navigation-tabs";
-import { Notifications } from "@/lib/notifications";
-import { HomeTodayReminders } from "./_components/home-today-reminders";
-import { HomeLists } from "./_components/home-lists";
-import { HomeDrawerMenu } from "./_components/home-drawer-menu";
 
 Notifications.setNotificationHandler({
   handleNotification: async () => ({
@@ -26,7 +25,6 @@ export default function Page() {
               <Logo />
             </View>
 
-            <HomeDrawerMenu />
           </>
         }
         footerChildren={<NavigationTabs />}

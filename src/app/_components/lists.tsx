@@ -1,16 +1,16 @@
 import React from "react";
 import { ScrollView, Text, View } from "react-native";
 
+import { useRepoStore } from "@/stories/repo/repo-store";
 import { ListItemLink } from "./list-item-link";
 import { ListsEmpty } from "./lists-empty";
-import { useRepoStore } from "@/stories/repo/repo-store";
 
 export const Lists = () => {
   const { lists } = useRepoStore((state) => state);
 
   return (
     <>
-      <Text className="pt-3 pb-3 pl-5 font-bold text-xl dark:text-slate-50">
+      <Text className="pt-3 pb-3 pl-5 font-bold text-xl">
         Minhas listas
       </Text>
 

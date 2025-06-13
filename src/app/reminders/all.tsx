@@ -1,10 +1,10 @@
+import { SimpleLineIcons } from "@expo/vector-icons";
 import { Text, View } from "react-native";
 import colors from "tailwindcss/colors";
-import { HeadingTemplate } from "../_components/heading-template";
-import { GoBackButton } from "../_components/go-back-button";
-import { SimpleLineIcons } from "@expo/vector-icons";
-import { Reminders } from "../_components/reminders";
 import { CreateReminderLink } from "../_components/create-reminder-link";
+import { GoBackButton } from "../_components/go-back-button";
+import { HeadingTemplate } from "../_components/heading-template";
+import { Reminders } from "../_components/reminders";
 
 export default function Page() {
   return (
@@ -17,7 +17,7 @@ export default function Page() {
             <View className="flex-row justify-center items-center space-x-2 p-1 rounded-md active:bg-slate-400">
               <SimpleLineIcons name="bell" size={24} color={colors.cyan[600]} />
 
-              <Text className="font-bold text-sm capitalize text-slate-100">
+              <Text className="font-bold text-sm capitalize text-slate-700">
                 Lembretes
               </Text>
             </View>

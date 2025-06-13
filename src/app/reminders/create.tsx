@@ -1,19 +1,24 @@
-import { useNavigation } from "expo-router";
-import React, { useState } from "react";
-import { Text, TextInput, View } from "react-native";
-import { GoBackButton } from "../_components/go-back-button";
-import { HeadingTemplate } from "../_components/heading-template";
-import { LinkButton } from "../_components/link-button";
 import { Crypto } from "@/lib/crypto";
+import { useRepoStore } from "@/stories/repo/repo-store";
 import DateTimePicker, {
   DateTimePickerEvent,
 } from "@react-native-community/datetimepicker";
 import { format } from "date-fns";
-import { FooterButton } from "../_components/footer-button";
+import { useNavigation } from "expo-router";
+import React, { useState } from "react";
+import {
+  Button,
+  Modal,
+  Platform,
+  Text,
+  TextInput,
+  View,
+} from "react-native";
 import { DateSelectModeTabs } from "../_components/date-select-mode-tabs";
-import { useRepoStore } from "@/stories/repo/repo-store";
-import { useColorScheme } from "nativewind";
-import { cn } from "@/lib/cn";
+import { FooterButton } from "../_components/footer-button";
+import { GoBackButton } from "../_components/go-back-button";
+import { HeadingTemplate } from "../_components/heading-template";
+import { LinkButton } from "../_components/link-button";
 
 interface ReminderItemProps {
   label: string;
@@ -22,7 +27,6 @@ interface ReminderItemProps {
 
 export default function Page() {
   const navigation = useNavigation();
-  const { colorScheme } = useColorScheme();
   const { createReminder } = useRepoStore((state) => state);
   const [reminderLabel, setReminderLabel] = useState<ReminderItemProps>(
     {} as ReminderItemProps
@@ -104,7 +108,7 @@ export default function Page() {
           <>
             <GoBackButton />
 
-            <Text className="text-base font-bold text-slate-50">
+            <Text className="text-base font-bold text-slate-700">
               Criar novo Lembrete
             </Text>
           </>
@@ -114,9 +118,9 @@ export default function Page() {
         }
       />
 
-      <View className="flex-1 h-full justify-between p-5">
+      <View className="flex-1 h-full justify-between p-5 pb-7">
         <View className="space-y-3">
-          <Text className="dark:text-slate-50 font-bold text-base">
+          <Text className="font-bold text-base">
             Dê um nome ao lembrete:
           </Text>
 
@@ -132,37 +136,24 @@ export default function Page() {
               });
             }}
             value={reminderLabel?.label}
-            className={cn(
-              colorScheme === "light" && "bg-slate-300",
-              "p-3 px-4 dark:bg-slate-700 border-solid rounded-lg dark:text-slate-200  focus:border focus:border-cyan-400"
-            )}
+            className="p-3 px-4 bg-slate-300 border-solid rounded-lg  focus:border focus:border-cyan-400"
           />
 
           <DateSelectModeTabs handleShowMode={handleToggleMode} />
 
           {currentDateSelected && (
-            <Text
-              className={cn(
-                colorScheme === "light" && "bg-slate-300",
-                "dark:bg-slate-600 p-2 rounded-md dark:text-slate-200"
-              )}
-            >
+            <Text className="bg-slate-300 p-2 rounded-md">
               {currentDateSelected}
             </Text>
           )}
 
           {currentHourSelected && (
-            <Text
-              className={cn(
-                colorScheme === "light" && "bg-slate-300",
-                "dark:bg-slate-600 p-2 rounded-md dark:text-slate-200"
-              )}
-            >
+            <Text className="bg-slate-300 p-2 rounded-md">
               {currentHourSelected}
             </Text>
           )}
 
-          {pickerLabels.show && (
+          {pickerLabels.show && Platform.OS === "android" && (
             <DateTimePicker
               is24Hour
               locale="pt-BR"
@@ -170,7 +161,28 @@ export default function Page() {
               minimumDate={new Date()}
               onChange={handleOnChangePicker}
               value={pickerLabels.date}
+              style={{ alignSelf: "center" }}
             />
+          )}
+
+          {Platform.OS === "ios" && (
+            <Modal transparent={true} visible={pickerLabels.show} animationType="slide">
+              <View className="flex-1 justify-end bg-black/30">
+                <View className="bg-white p-5 rounded-t-2xl space-y-3">
+                  <DateTimePicker
+                    is24Hour
+                    locale="pt-BR"
+                    mode={pickerLabels.mode}
+                    minimumDate={new Date()}
+                    onChange={handleOnChangePicker}
+                    value={pickerLabels.date}
+                    display="spinner"
+                    style={{ alignSelf: "center" }}
+                  />
+                  <Button title="Confirmar" onPress={() => setPikerLabels(prev => ({ ...prev, show: false }))} />
+                </View>
+              </View>
+            </Modal>
           )}
         </View>
 
