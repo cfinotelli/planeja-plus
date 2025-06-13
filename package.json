@@ -47,7 +47,8 @@
     "zustand": "^4.5.4"
   },
   "devDependencies": {
-    "@babel/core": "^7.26.0",
+    "@babel/core": "^7.21.0",
+    "@babel/preset-env": "^7.21.0",
     "@react-native-community/cli-server-api": "^18.0.0",
     "@testing-library/react-native": "^12.6.1",
     "@types/jest": "^29.5.12",
