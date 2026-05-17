@@ -1,3 +1,4 @@
+import { SchedulableTriggerInputTypes } from "expo-notifications";
 import { Notifications } from "@/lib/notifications";
 
 export class NotificationModule {
@@ -23,6 +24,7 @@ export class NotificationModule {
         vibrate: [0, 250, 250, 250],
       },
       trigger: {
+        type: SchedulableTriggerInputTypes.DATE,
         date: reminderAt,
       },
     });
